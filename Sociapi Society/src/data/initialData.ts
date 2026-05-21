@@ -2,8 +2,16 @@
 // Modify values below to instantly update the website layout and statistics.
 
 // Helper function to import images correctly for Vite bundling
+const imageModules = import.meta.glob('../Image/**/*.{png,jpg,jpeg,jfif}', { eager: true }) as Record<string, { default: string }>;
+
 const importImage = (path: string): string => {
-  return new URL(`../Image/${path}`, import.meta.url).href;
+  const relativePath = `../Image/${path}`;
+  const module = imageModules[relativePath];
+  if (!module) {
+    console.warn(`Image not found: ${relativePath}`);
+    return '';
+  }
+  return module.default;
 };
 
 export interface TeamMember {
@@ -347,7 +355,7 @@ export const initialGallery: GalleryItem[] = Array.from({ length: 20 }).map((_, 
     id: `gallery-${itemNum}`,
     title: `${category} Image Log #${itemNum}`,
     category,
-    imageUrl: `src//Image/Agentum Pic/IMG_6010.png`,
+    imageUrl: importImage('Agentum Pic/IMG_6010.png'),
     
     date: '2026-05-07',
     description: 'Visual evidence capturing technical education, mentorship, and developer collaboration during active campaigns.'
