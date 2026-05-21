@@ -1,6 +1,11 @@
 // CENTRALIZED SOCIAPI DATABASE FILE
 // Modify values below to instantly update the website layout and statistics.
 
+// Helper function to import images correctly for Vite bundling
+const importImage = (path: string): string => {
+  return new URL(path, import.meta.url).href;
+};
+
 export interface TeamMember {
   id: string;
   name: string;
@@ -139,7 +144,7 @@ export interface SiteSettings {
 }
 
 export const initialSettings: SiteSettings = {
-  logoUrl: 'src/Image/ss.png', // Add image path to display a custom logo
+  logoUrl: importImage('./Image/ss.png'), // Add image path to display a custom logo
   logoText: 'Sociapi Society',
   subtitleText: 'From Ideas to Intelligence',
   foundedDate: 'Dec 2025',
@@ -161,7 +166,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Zuhair Zeb',
     role: 'Founder',
     department: 'Leadership',
-    avatar: 'src/Image/Team Pic/Zuhair.jpeg',
+    avatar: importImage('./Image/Team Pic/Zuhair.jpeg'),
     bio: 'Muhammad Zuhair Zeb belongs to Swabi, Pakistan. He is an undergraduate student in Artificial Intelligence at Islamia College University, Peshawar. He is the founder of Sociapi Society, a student-led platform that promotes technology, creativity, and skills development. Through this program, he seeks to provide students with opportunities to study current technology and develop practical skills. His interests include data and business intelligence, AI agents, and new technologies. He is skilled in data analysis, dashboard creation, and using AI tools to solve real-world problems.',
     skills: ['Artificial Intelligence', 'Data Analysis', 'Business Intelligence', 'AI Agents', 'Dashboard Design'],
     socials: { github: 'https://github.com/zuhairzeb', linkedin: 'https://linkedin.com/zuhairzeb', email: 'sociapisociety@gmail.com' },
@@ -172,7 +177,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Mudassir',
     role: 'Co-Founder',
     department: 'Leadership',
-    avatar: 'src/Image/Team Pic/Muhammad Mudassir.jpg',
+    avatar: importImage('./Image/Team Pic/Muhammad Mudassir.jpg'),
     bio: 'Co-Founder of Sociapi Society. Partner in coordinating technical workflows, managing study sprints, and scaling campus machine learning cohorts.',
     skills: ['Python', 'Deep Learning', 'Project Orchestration', 'Team Synergy'],
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com' },
@@ -183,7 +188,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Hamza khan',
     role: 'HR manager',
     department: 'Administration',
-    avatar: 'src/Image/Team Pic/Hamza Khan.jpg',
+    avatar: importImage('./Image/Team Pic/Hamza Khan.jpg'),
     bio: 'Directs society personnel logistics, coordinator matching, and interview pipelines for junior technical leads.',
     skills: ['Human Resources', 'Teamwork', 'Communication', 'Recruitment'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -194,7 +199,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Sajid Ullah',
     role: 'Outreach',
     department: 'Operations',
-    avatar: 'src/Image/Team Pic/Saجid_waزir.png',
+    avatar: importImage('./Image/Team Pic/Saجid_waزir.png'),
     bio: 'Leads communications with external tech communities, sponsors, and guest lecturers across Peshawar.',
     skills: ['Outreach', 'Networking', 'Public Relations', 'Events Marketing'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -205,7 +210,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Faisal',
     role: 'Video Editor',
     department: 'Design & Media',
-    avatar: 'src/Image/Team Pic/Faisal Khan.png',
+    avatar: importImage('./Image/Team Pic/Faisal Khan.png'),
     bio: 'Crafts premium digital reels, speaker promotional reels, and event wrap-up motion graphics.',
     skills: ['Premiere Pro', 'After Effects', 'Cinematic Cuts', 'Sound Design'],
     socials: { github: 'https://github.com' },
@@ -216,7 +221,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Asiya Islam',
     role: 'Women Lead',
     department: 'Leadership',
-    avatar: 'src/Image/Team Pic/Female/Asiya Islam.png',
+    avatar: importImage('./Image/Team Pic/Female/Asiya Islam.png'),
     bio: 'Empowering and mentoring women developers at Islamia University, Peshawar, bridging STEM training gaps.',
     skills: ['Mentorship', 'Web Dev', 'Public Speaking', 'STEM Outreach'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -227,7 +232,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Maham Iqbal',
     role: 'Women CO-Lead',
     department: 'Leadership',
-    avatar: 'src/Image/Team Pic/Female/Maham Iqbal.png',
+    avatar: importImage('./Image/Team Pic/Female/Maham Iqbal.png'),
     bio: 'Co-leads STEM initiatives, event coordination, and junior study groups for female engineering students.',
     skills: ['Coordination', 'Project Management', 'UI Design', 'Data Entry'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -238,7 +243,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Alina Kalim',
     role: 'Decor Lead',
     department: 'Operations',
-    avatar: 'src/Image/Team Pic/Female/Alina khan.JPG',
+    avatar: importImage('./Image/Team Pic/Female/Alina khan.JPG'),
     bio: 'Orchestrates the visual layout and stage design of tech seminars, ensuring a premium futuristic atmosphere.',
     skills: ['Venue Styling', 'Theme Design', 'Visual Aesthetics', 'Logistics'],
     socials: {},
@@ -249,7 +254,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Maimoona Iqbal',
     role: 'Decor',
     department: 'Operations',
-    avatar: 'src/Image/Team Pic/Female/maimoona.jpg',
+    avatar: importImage('./Image/Team Pic/Female/maimoona.jpg'),
     bio: 'Assists with venue designs, coordinate schedules, and stage logistics during large campaigns.',
     skills: ['Aesthetic Coordination', 'Creative Design', 'Team Collaboration'],
     socials: {},
@@ -260,7 +265,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Shandana Qadir(Amal khan)',
     role: 'Graphic co-Lead',
     department: 'Design & Media',
-    avatar: 'src/Image/Team Pic/Shandana Qadir.jfif',
+    avatar: importImage('./Image/Team Pic/Shandana Qadir.jfif'),
     bio: 'Designs high-fidelity banners, typography templates, and customized apparel merchandise graphics.',
     skills: ['Figma', 'Vector Art', 'Branding Guidelines', 'Motion Aesthetics'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -271,7 +276,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Bilal Muhammad',
     role: 'General Secretary',
     department: 'Leadership',
-    avatar: 'src/Image/Team Pic/Bilal Muhammad.jpg',
+    avatar: importImage('./Image/Team Pic/Bilal Muhammad.jpg'),
     bio: 'Manages administrative files, registrations database, and correspondence with university management.',
     skills: ['Administration', 'Strategic Planning', 'Technical Documentation'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -282,7 +287,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Zakria',
     role: 'Project Manger',
     department: 'Technical',
-    avatar: 'src/Image/Team Pic/Muhammad Zakria.jpg',
+    avatar: importImage('./Image/Team Pic/Muhammad Zakria.jpg'),
     bio: 'Directs open-source projects, reviews developer repositories, and coordinates git branches.',
     skills: ['Git Sprints', 'Project Schedulers', 'Python Scripting', 'Code Audits'],
     socials: { github: 'https://github.com' },
@@ -293,7 +298,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad zulkifal',
     role: 'Event Manger',
     department: 'Operations',
-    avatar: 'src/Image/Team Pic/Muhammad Zulkifal (Event Manger).jpg',
+    avatar: importImage('./Image/Team Pic/Muhammad Zulkifal (Event Manger).jpg'),
     bio: 'Supervises venue bookings, coordinator rosters, guest welcome lists, and registration desks.',
     skills: ['Event Logistics', 'Crowd Schedulers', 'Operations Lead'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -304,7 +309,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Hammad khan',
     role: 'Technical co-lead',
     department: 'Technical',
-    avatar: 'src/Image/Team Pic/Hamad Khan.jpg',
+    avatar: importImage('./Image/Team Pic/Hamad Khan.jpg'),
     bio: 'Instructs bootcamps on Next.js, OpenCV setups, and trains junior developers in clean code practices.',
     skills: ['Full Stack Development', 'React', 'OpenCV', 'Algorithms'],
     socials: { github: 'https://github.com' },
@@ -315,7 +320,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Saad',
     role: 'Media',
     department: 'Design & Media',
-    avatar: 'src/Image/Team Pic/saad.jpeg',
+    avatar: importImage('./Image/Team Pic/saad.jpeg'),
     bio: 'Captures photography during live speaker sessions and writes technical recap columns for our social platforms.',
     skills: ['Photography', 'Social Outreach', 'Copywriting'],
     socials: {},
@@ -327,7 +332,7 @@ export const initialTeam: TeamMember[] = [
 export const teacherAdvisor = {
   name: 'Naveed Abbas',
   role: 'Teacher Advisor',
-  avatar: 'src/Image/Team Pic/Navved.png',
+  avatar: importImage('./Image/Team Pic/Navved.png'),
   bio: 'Guides Sociapi Society on institutional guidelines, academic integrations, and community mentoring pipelines.'
 };
 
@@ -351,25 +356,25 @@ export const initialGallery: GalleryItem[] = Array.from({ length: 20 }).map((_, 
 
 // Overwrite first few gallery pictures with relevant technology images
 const techImages = [
-  'src/Image/1.png',
-  'src/Image/2.png',
-  'src/Image/3.png',
-  'src/Image/4.png',
-  'src/Image/5.png',
-  'src/Image/6.png',
-  'src/Image/7.png',
-  'src/Image/8.png',
-  'src/Image/9.png',
-  'src/Image/10.png',
-  'src/Image/Agentum Pic/0001.jpg',
-  'src/Image/Agentum Pic/6.jpg',
-  'src/Image/Agentum Pic/7.jpeg',
-  'src/Image/Agentum Pic/12.png',
-  'src/Image/Agentum Pic/13.png',
-  'src/Image/Agentum Pic/15.jfif',
-  'src/Image/Agentum Pic/Khyzar Hayat.png',
-  'src/Image/Agentum Pic/mustafa.png',
-  'src/Image/Agentum Pic/uzair.png',
+  importImage('./Image/1.png'),
+  importImage('./Image/2.png'),
+  importImage('./Image/3.png'),
+  importImage('./Image/4.png'),
+  importImage('./Image/5.png'),
+  importImage('./Image/6.png'),
+  importImage('./Image/7.png'),
+  importImage('./Image/8.png'),
+  importImage('./Image/9.png'),
+  importImage('./Image/10.png'),
+  importImage('./Image/Agentum Pic/0001.jpg'),
+  importImage('./Image/Agentum Pic/6.jpg'),
+  importImage('./Image/Agentum Pic/7.jpeg'),
+  importImage('./Image/Agentum Pic/12.png'),
+  importImage('./Image/Agentum Pic/13.png'),
+  importImage('./Image/Agentum Pic/15.jfif'),
+  importImage('./Image/Agentum Pic/Khyzar Hayat.png'),
+  importImage('./Image/Agentum Pic/mustafa.png'),
+  importImage('./Image/Agentum Pic/uzair.png'),
 ];
 techImages.forEach((img, idx) => {
   if (initialGallery[idx]) {
@@ -458,7 +463,7 @@ The success of Mehfil AI 2026 became possible because of the support of sponsors
     readTime: '6 min read',
     category: 'Generative AI',
     tags: ['Mehfil AI', 'Peshawar', 'Future Tech'],
-    imageUrl: 'src/Image/محفلAi.png?w=800&fit=crop&q=80',
+    imageUrl: importImage('./Image/محفلAi.png'),
     views: 289
   },
   {
@@ -518,7 +523,7 @@ export const initialEvents: EventItem[] = [
     time: '10:00 AM - 04:00 PM',
     location: 'Islamia University Peshawar',
     category: 'Past',
-    imageUrl: 'src/Image/محفلAi.png?w=800&fit=crop&q=80',
+    imageUrl: importImage('./Image/محفلAi.png'),
     speaker: {
       name: 'Abdul Wahid / Junaid Ahmad',
       role: 'Keynote Speakers & Entrepreneurs',
@@ -540,7 +545,7 @@ export const initialEvents: EventItem[] = [
     time: '11:00 AM - 03:00 PM',
     location: 'Islamia University Peshawar',
     category: 'Past',
-    imageUrl: 'src/Image/Agentum blog.png?w=800&fit=crop&q=80',
+    imageUrl: importImage('./Image/Agentum blog.png'),
     speaker: {
       name: 'Khizer Hayat / Mustafa Khan / Muhammad Uzair',
       role: 'Instructors & AI developers',
@@ -564,7 +569,7 @@ export const initialMerch: MerchItem[] = [
     name: 'SOCIAPI OverSized Male Shirt',
     price: 1500,
     category: 'T-Shirt',
-    imageUrl: 'src/Image/OVERSIZED Male.png',
+    imageUrl: importImage('./Image/OVERSIZED Male.png'),
     description: 'Part of our 3 official launch shirts. Made with 100% premium soft cotton and detailed with custom back text print.',
     details: ['100% Cotton', 'Wash-resistant decals', 'Limited launch edition'],
     sizes: ['S', 'M', 'L', 'XL'],
@@ -575,7 +580,7 @@ export const initialMerch: MerchItem[] = [
     name: 'SOCIAPI OverSized shirt for females',
     price: 1500,
     category: 'T-Shirt',
-    imageUrl: 'src/Image/OVERSIZED Female.png',
+    imageUrl: importImage('./Image/OVERSIZED Female.png'),
     description: 'Part of our 3 official launch shirts. Engineered for programmers and data analysts.',
     details: ['Double stitched seams', 'Modern dark green accent color', 'Breathable weave'],
     sizes: ['M', 'L', 'XL'],
@@ -586,7 +591,7 @@ export const initialMerch: MerchItem[] = [
     name: 'SOCIAPI  Shirt',
     price: 1500,
     category: 'T-Shirt',
-    imageUrl: 'src/Image/OVERSIZED 3.png',
+    imageUrl: importImage('./Image/OVERSIZED 3.png'),
     description: 'Part of our 3 official launch shirts. A special edition commemorating the journey from Swabi to Peshawar.',
     details: ['Lightweight summer fabric', 'Custom graphics on chest', 'Unisex modern fit'],
     sizes: ['S', 'M', 'L'],
@@ -604,7 +609,7 @@ export const initialReviews: ReviewItem[] = [
     role: 'HR Manager',
     review: 'Sociapi is a great platform that encourages creativity, teamwork, and professional growth. Being part of this society as an HR has been a wonderful experience. It provides opportunities for students to learn, collaborate, and develop valuable skills. Proud to be a part of Sociapi!',
     rating: 5,
-    avatar: 'src/Image/Team Pic/Hamza Khan.jpg',
+    avatar: importImage('./Image/Team Pic/Hamza Khan.jpg'),
     tag: 'HR Manager Review'
   },
   {
