@@ -1,0 +1,4 @@
+[build]
+  base = "Sociapi Society"
+  publish = "dist"
+  command = "npm install --include=dev && npm run build"
