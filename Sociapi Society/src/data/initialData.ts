@@ -610,7 +610,7 @@ export const initialReviews: ReviewItem[] = [
     role: 'HR Manager',
     review: 'Sociapi is a great platform that encourages creativity, teamwork, and professional growth. Being part of this society as an HR has been a wonderful experience. It provides opportunities for students to learn, collaborate, and develop valuable skills. Proud to be a part of Sociapi!',
     rating: 5,
-    avatar: importImage('Team Pic/Hamza Khan.jpg'),
+    avatar: 'Sociapi Society/src/Image/Team Pic/Hamza Khan.jpg',
     tag: 'HR Manager Review'
   },
   {
