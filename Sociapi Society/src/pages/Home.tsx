@@ -5,6 +5,11 @@ import {
 } from 'lucide-react';
 import { BlogPost, EventItem, TeamMember, GalleryItem, MerchItem, ReviewItem, FAQItem } from '../data/initialData';
 
+// Helper function to import images correctly for Vite bundling
+const importImage = (path: string): string => {
+  return new URL(`../Image/${path}`, import.meta.url).href;
+};
+
 interface HomeProps {
   setCurrentPage: (page: string) => void;
   blogs: BlogPost[];
@@ -155,7 +160,7 @@ export const Home: React.FC<HomeProps> = ({
           <div className="relative rounded-2xl overflow-hidden border border-[#517642]/30 aspect-video group">
             <div className="absolute inset-0 bg-gradient-to-t from-[#121212] via-transparent to-transparent z-10" />
             <img 
-              src="src/Image/ss team.jpg" 
+              src={importImage('ss team.jpg')}
               alt="Students Collaborating"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
             />
