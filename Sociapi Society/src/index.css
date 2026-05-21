@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@theme {
+  --font-tomorrow: "Tomorrow", sans-serif;
+  --font-space: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-dark: #333333;
+  --color-brand-green-dark: #517642;
+  --color-brand-green-neon: #7bd355;
+  --color-brand-light: #e8ecee;
+  --color-brand-grey: #939596;
+}
+
+@layer base {
+  body {
+    background-color: #121212;
+    color: #e8ecee;
+    font-family: var(--font-space);
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #7bd355 #121212;
+  }
+
+  /* Custom scrollbar for Webkit */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #121212;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #517642;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7bd355;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-futuristic {
+    font-family: var(--font-tomorrow), sans-serif;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Futuristic utilities */
+.glow-text {
+  text-shadow: 0 0 10px rgba(123, 211, 85, 0.4), 0 0 30px rgba(123, 211, 85, 0.2);
+}
+
+.glow-border {
+  border: 1px solid rgba(123, 211, 85, 0.2);
+  box-shadow: 0 0 15px rgba(123, 211, 85, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glow-border:hover {
+  border-color: rgba(123, 211, 85, 0.5);
+  box-shadow: 0 0 25px rgba(123, 211, 85, 0.25);
+}
+
+.glow-shadow-neon {
+  box-shadow: 0 0 20px rgba(123, 211, 85, 0.3);
+}
+
+.glow-shadow-neon-strong {
+  box-shadow: 0 0 35px rgba(123, 211, 85, 0.6);
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+  background: rgba(30, 30, 30, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(147, 149, 150, 0.1);
+}
+
+.glass-panel-interactive {
+  background: rgba(30, 30, 30, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(147, 149, 150, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-interactive:hover {
+  background: rgba(51, 51, 51, 0.8);
+  border-color: rgba(123, 211, 85, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(123, 211, 85, 0.15);
+}
+
+/* Cyber grid background */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(147, 149, 150, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(147, 149, 150, 0.05) 1px, transparent 1px);
+}
+
+/* Futuristic Scanline Effect */
+.scanline {
+  position: relative;
+  overflow: hidden;
+}
+.scanline::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(123, 211, 85, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Custom animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  100% { transform: translateX(100%); }
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(123, 211, 85, 0.1) 20%,
+    rgba(123, 211, 85, 0.2) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2.5s infinite;
+  content: '';
+}
