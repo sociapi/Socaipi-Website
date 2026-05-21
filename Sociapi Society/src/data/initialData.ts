@@ -375,6 +375,7 @@ const techImages = [
   importImage('./Image/Agentum Pic/Khyzar Hayat.png'),
   importImage('./Image/Agentum Pic/mustafa.png'),
   importImage('./Image/Agentum Pic/uzair.png'),
+  importImage('./Image/Agentum Pic/IMG_6010.png'),
 ];
 techImages.forEach((img, idx) => {
   if (initialGallery[idx]) {
