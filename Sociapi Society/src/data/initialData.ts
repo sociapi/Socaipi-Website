@@ -1,17 +1,61 @@
 // CENTRALIZED SOCIAPI DATABASE FILE
 // Modify values below to instantly update the website layout and statistics.
 
-// Helper function to import images correctly for Vite bundling
-const imageModules = import.meta.glob('../Image/**/*.{png,jpg,jpeg,jfif}', { eager: true }) as Record<string, { default: string }>;
+// Explicit image imports for better compatibility on Linux servers (case-sensitive, no special character issues)
+import zuhairImg from '../Image/Team Pic/Zuhair.jpeg';
+import mudassirImg from '../Image/Team Pic/Muhammad Mudassir.jpg';
+import hamzaImg from '../Image/Team Pic/Hamza Khan.jpg';
+import faisalImg from '../Image/Team Pic/Faisal Khan.png';
+import asiyaImg from '../Image/Team Pic/Female/Asiya Islam.png';
+import mahamImg from '../Image/Team Pic/Female/Maham Iqbal.png';
+import alinaImg from '../Image/Team Pic/Female/Alina khan.JPG';
+import maimoonaImg from '../Image/Team Pic/Female/maimoona.jpg';
+import shandanaImg from '../Image/Team Pic/Shandana Qadir.jfif';
+import bilalImg from '../Image/Team Pic/Bilal Muhammad.jpg';
+import zakriaImg from '../Image/Team Pic/Muhammad Zakria.jpg';
+import zulkifalImg from '../Image/Team Pic/Muhammad Zulkifal (Event Manger).jpg';
+import hamadImg from '../Image/Team Pic/Hamad Khan.jpg';
+import saadImg from '../Image/Team Pic/saad.jpeg';
+import navvedImg from '../Image/Team Pic/Navved.png';
+// @ts-ignore - File has special characters in name
+import sajidImg from '../Image/Team Pic/Saجid_waزir.png';
+import agentumImg from '../Image/Agentum Pic/15.jfif';
+import agentumBlogImg from '../Image/Agentum blog.png';
+import oversizedMaleImg from '../Image/OVERSIZED Male.png';
+import oversizedFemaleImg from '../Image/OVERSIZED Female.png';
+import oversized3Img from '../Image/OVERSIZED 3.png';
+// @ts-ignore - File has special characters in name
+import mahfalmAiImg from '../Image/محفلAi.png';
+
+// Map image names to imports for fallback
+const imageMap: Record<string, string> = {
+  'ss.png': '',
+  'Team Pic/Zuhair.jpeg': zuhairImg,
+  'Team Pic/Muhammad Mudassir.jpg': mudassirImg,
+  'Team Pic/Hamza Khan.jpg': hamzaImg,
+  'Team Pic/Saجid_waزir.png': sajidImg,
+  'Team Pic/Faisal Khan.png': faisalImg,
+  'Team Pic/Female/Asiya Islam.png': asiyaImg,
+  'Team Pic/Female/Maham Iqbal.png': mahamImg,
+  'Team Pic/Female/Alina khan.JPG': alinaImg,
+  'Team Pic/Female/maimoona.jpg': maimoonaImg,
+  'Team Pic/Shandana Qadir.jfif': shandanaImg,
+  'Team Pic/Bilal Muhammad.jpg': bilalImg,
+  'Team Pic/Muhammad Zakria.jpg': zakriaImg,
+  'Team Pic/Muhammad Zulkifal (Event Manger).jpg': zulkifalImg,
+  'Team Pic/Hamad Khan.jpg': hamadImg,
+  'Team Pic/saad.jpeg': saadImg,
+  'Team Pic/Navved.png': navvedImg,
+  'Agentum Pic/IMG_6010.png': agentumImg,
+  'محفلAi.png': mahfalmAiImg,
+  'Agentum blog.png': agentumBlogImg,
+  'OVERSIZED Male.png': oversizedMaleImg,
+  'OVERSIZED Female.png': oversizedFemaleImg,
+  'OVERSIZED 3.png': oversized3Img,
+};
 
 const importImage = (path: string): string => {
-  const relativePath = `../Image/${path}`;
-  const module = imageModules[relativePath];
-  if (!module) {
-    console.warn(`Image not found: ${relativePath}`);
-    return '';
-  }
-  return module.default;
+  return imageMap[path] || '';
 };
 
 export interface TeamMember {
