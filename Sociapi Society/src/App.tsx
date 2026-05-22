@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Terminal as TerminalIcon } from 'lucide-react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 
 // Data imports
 import { 
@@ -286,6 +287,9 @@ export default function App() {
 
       {/* Vercel Speed Insights - Performance monitoring */}
       <SpeedInsights />
+
+      {/* Vercel Web Analytics - Visitor tracking */}
+      <Analytics />
 
     </div>
   );
