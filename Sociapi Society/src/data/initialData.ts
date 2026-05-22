@@ -163,7 +163,7 @@ export const initialSettings: SiteSettings = {
 };
 
 // ============================================================
-// TEAM MEMBERS (All using getImagePath now)
+// TEAM MEMBERS
 // ============================================================
 
 export const initialTeam: TeamMember[] = [
@@ -205,7 +205,8 @@ export const initialTeam: TeamMember[] = [
     name: 'Sajid Ullah',
     role: 'Outreach',
     department: 'Operations',
-    avatar: getImagePath('Team Pic/Saجid_waزir.png'),
+    // ✅ FIXED: Renamed file from 'Saجid_waزir.png' to 'Sajid_Wazir.png' (removed Arabic characters)
+    avatar: getImagePath('Team Pic/Sajid_Wazir.png'),
     bio: 'Leads communications with external tech communities, sponsors, and guest lecturers across Peshawar.',
     skills: ['Outreach', 'Networking', 'Public Relations', 'Events Marketing'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -346,7 +347,7 @@ export const initialTeam: TeamMember[] = [
 ];
 
 // ============================================================
-// GALLERY (All using getImagePath)
+// GALLERY
 // ============================================================
 
 export const initialGallery: GalleryItem[] = [
@@ -354,7 +355,7 @@ export const initialGallery: GalleryItem[] = [
     id: 'gal-1',
     title: 'Mehfil AI 2026 - Grand Opening',
     category: 'Seminars',
-    imageUrl: getImagePath('محفلAi.png'),
+    imageUrl: getImagePath('Mehfil_AI.png'),
     date: '07 May 2026',
     description: 'The grand opening ceremony of Mehfil AI 2026 at Khyber Union Hall, Islamia University Peshawar with 500+ attendees.'
   },
@@ -362,7 +363,7 @@ export const initialGallery: GalleryItem[] = [
     id: 'gal-2',
     title: 'AGENTUM 2026 - AI Agents Session',
     category: 'Seminars',
-    imageUrl: getImagePath('Image/Agentum Pic/0001.jpg'),
+    imageUrl: getImagePath('Agentum blog.png'),
     date: '17 Feb 2026',
     description: 'Keynote presentation on AI Agents and Automation during the AGENTUM 2026 seminar.'
   },
@@ -544,7 +545,7 @@ Mehfil AI 2026 was organized with the goal of spreading awareness about Artifici
     readTime: '6 min read',
     category: 'Generative AI',
     tags: ['Mehfil AI', 'Peshawar', 'Future Tech'],
-    imageUrl: getImagePath('محفلAi.png'),
+    imageUrl: getImagePath('Mehfil_AI.png'),
     views: 289
   },
   {
@@ -593,7 +594,7 @@ export const initialEvents: EventItem[] = [
     time: '10:00 AM - 04:00 PM',
     location: 'Islamia University Peshawar',
     category: 'Past',
-    imageUrl: getImagePath('محفلAi.png'),
+    imageUrl: getImagePath('Mehfil_AI.png'),
     speaker: {
       name: 'Abdul Wahid / Junaid Ahmad',
       role: 'Keynote Speakers & Entrepreneurs',
@@ -682,7 +683,7 @@ export const initialReviews: ReviewItem[] = [
     role: 'HR Manager',
     review: 'Sociapi is a great platform that encourages creativity, teamwork, and professional growth. Being part of this society as an HR has been a wonderful experience. It provides opportunities for students to learn, collaborate, and develop valuable skills. Proud to be a part of Sociapi!',
     rating: 5,
-    avatar: getImagePath('Sociapi Society/src/Image/Team Pic/Hamza Khan.jpg'),
+    avatar: getImagePath('Team Pic/Hamza Khan.jpg'),
     tag: 'HR Manager Review'
   },
   {
