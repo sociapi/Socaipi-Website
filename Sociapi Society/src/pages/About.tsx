@@ -161,7 +161,7 @@ export const About: React.FC = () => {
         <div className="glass-panel rounded-2xl border border-[#333333] p-8 md:p-12 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative overflow-hidden">
           <div className="space-y-3 lg:col-span-1 text-center lg:text-left">
             <img 
-              src={importImage('Sociapi Society/src/Image/Team Pic/Navved.png')}
+              src={getImagePath('Team Pic/Navved.png')}
               alt="Naveed Abbas" 
               className="w-28 h-28 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-[#517642]"
             />
