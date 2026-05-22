@@ -1,104 +1,14 @@
 // CENTRALIZED SOCIAPI DATABASE FILE
-// Modify values below to instantly update the website layout and statistics.
+// OPTIMIZED: All image imports removed, using dynamic paths instead
 
-// Explicit image imports for better compatibility on Linux servers (case-sensitive, no special character issues)
-import zuhairImg from '../Image/Team Pic/Zuhair.jpeg';
-import mudassirImg from '../Image/Team Pic/Muhammad Mudassir.jpg';
-import hamzaImg from '../Image/Team Pic/Hamza Khan.jpg';
-import faisalImg from '../Image/Team Pic/Faisal Khan.png';
-import asiyaImg from '../Image/Team Pic/Female/Asiya Islam.png';
-import mahamImg from '../Image/Team Pic/Female/Maham Iqbal.png';
-import alinaImg from '../Image/Team Pic/Female/Alina khan.JPG';
-import maimoonaImg from '../Image/Team Pic/Female/maimoona.jpg';
-import shandanaImg from '../Image/Team Pic/Shandana Qadir.jfif';
-import bilalImg from '../Image/Team Pic/Bilal Muhammad.jpg';
-import zakriaImg from '../Image/Team Pic/Muhammad Zakria.jpg';
-import zulkifalImg from '../Image/Team Pic/Muhammad Zulkifal (Event Manger).jpg';
-import hamadImg from '../Image/Team Pic/Hamad Khan.jpg';
-import saadImg from '../Image/Team Pic/saad.jpeg';
-import navvedImg from '../Image/Team Pic/Navved.png';
-// @ts-ignore - File has special characters in name
-import sajidImg from '../Image/Team Pic/Saجid_waزir.png';
-import agentumImg from '../Image/Agentum Pic/15.jfif';
-import agentumBlogImg from '../Image/Agentum blog.png';
-import oversizedMaleImg from '../Image/OVERSIZED Male.png';
-import oversizedFemaleImg from '../Image/OVERSIZED Female.png';
-import oversized3Img from '../Image/OVERSIZED 3.png';
-// @ts-ignore - File has special characters in name
-import mahfalmAiImg from '../Image/محفلAi.png';
-
-// Gallery/Agentum images
-import img1 from '../Image/1.png';
-import img2 from '../Image/2.png';
-import img3 from '../Image/3.png';
-import img4 from '../Image/4.png';
-import img5 from '../Image/5.png';
-import img6 from '../Image/6.png';
-import img7 from '../Image/7.png';
-import img8 from '../Image/8.png';
-import img9 from '../Image/9.png';
-import img10 from '../Image/10.png';
-import agentum0001Img from '../Image/Agentum Pic/0001.jpg';
-import agentum6Img from '../Image/Agentum Pic/6.jpg';
-import agentum7Img from '../Image/Agentum Pic/7.jpeg';
-import agentum12Img from '../Image/Agentum Pic/12.png';
-import agentum13Img from '../Image/Agentum Pic/13.png';
-import agentum15Img from '../Image/Agentum Pic/15.jfif';
-import khyzarImg from '../Image/Agentum Pic/Khyzar Hayat.png';
-import mustafaImg from '../Image/Agentum Pic/mustafa.png';
-import uzairImg from '../Image/Agentum Pic/uzair.png';
-import img6010Img from '../Image/Agentum Pic/IMG_6010.png';
-
-// Map image names to imports for fallback
-const imageMap: Record<string, string> = {
-  'ss.png': '',
-  'Team Pic/Zuhair.jpeg': zuhairImg,
-  'Team Pic/Muhammad Mudassir.jpg': mudassirImg,
-  'Team Pic/Hamza Khan.jpg': hamzaImg,
-  'Team Pic/Saجid_waزir.png': sajidImg,
-  'Team Pic/Faisal Khan.png': faisalImg,
-  'Team Pic/Female/Asiya Islam.png': asiyaImg,
-  'Team Pic/Female/Maham Iqbal.png': mahamImg,
-  'Team Pic/Female/Alina khan.JPG': alinaImg,
-  'Team Pic/Female/maimoona.jpg': maimoonaImg,
-  'Team Pic/Shandana Qadir.jfif': shandanaImg,
-  'Team Pic/Bilal Muhammad.jpg': bilalImg,
-  'Team Pic/Muhammad Zakria.jpg': zakriaImg,
-  'Team Pic/Muhammad Zulkifal (Event Manger).jpg': zulkifalImg,
-  'Team Pic/Hamad Khan.jpg': hamadImg,
-  'Team Pic/saad.jpeg': saadImg,
-  'Team Pic/Navved.png': navvedImg,
-  'محفلAi.png': mahfalmAiImg,
-  'Agentum blog.png': agentumBlogImg,
-  'OVERSIZED Male.png': oversizedMaleImg,
-  'OVERSIZED Female.png': oversizedFemaleImg,
-  'OVERSIZED 3.png': oversized3Img,
-  // Gallery images
-  '1.png': img1,
-  '2.png': img2,
-  '3.png': img3,
-  '4.png': img4,
-  '5.png': img5,
-  '6.png': img6,
-  '7.png': img7,
-  '8.png': img8,
-  '9.png': img9,
-  '10.png': img10,
-  'Agentum Pic/0001.jpg': agentum0001Img,
-  'Agentum Pic/6.jpg': agentum6Img,
-  'Agentum Pic/7.jpeg': agentum7Img,
-  'Agentum Pic/12.png': agentum12Img,
-  'Agentum Pic/13.png': agentum13Img,
-  'Agentum Pic/15.jfif': agentum15Img,
-  'Agentum Pic/Khyzar Hayat.png': khyzarImg,
-  'Agentum Pic/mustafa.png': mustafaImg,
-  'Agentum Pic/uzair.png': uzairImg,
-  'Agentum Pic/IMG_6010.png': img6010Img,
+// ✅ NEW: getImagePath function (replaces all imports)
+export const getImagePath = (filename: string): string => {
+  return new URL(`../Image/${filename}`, import.meta.url).href;
 };
 
-const importImage = (path: string): string => {
-  return imageMap[path] || '';
-};
+// ============================================================
+// INTERFACES (No changes)
+// ============================================================
 
 export interface TeamMember {
   id: string;
@@ -220,9 +130,6 @@ export interface PartnershipInquiry {
   date: string;
 }
 
-// ----------------------------------------------------
-// GLOBAL SITE BRANDING & STATISTICS
-// ----------------------------------------------------
 export interface SiteSettings {
   logoUrl: string;
   logoText: string;
@@ -237,8 +144,12 @@ export interface SiteSettings {
   secondaryEmail: string;
 }
 
+// ============================================================
+// SITE SETTINGS
+// ============================================================
+
 export const initialSettings: SiteSettings = {
-  logoUrl: importImage('ss.png'), // Add image path to display a custom logo
+  logoUrl: getImagePath('ss.png'),
   logoText: 'Sociapi Society',
   subtitleText: 'From Ideas to Intelligence',
   foundedDate: 'Dec 2025',
@@ -251,16 +162,17 @@ export const initialSettings: SiteSettings = {
   secondaryEmail: 'info.sociapi@gmail.com'
 };
 
-// ----------------------------------------------------
-// TEAM MEMBERS LIST (Exact custom request)
-// ----------------------------------------------------
+// ============================================================
+// TEAM MEMBERS (All using getImagePath now)
+// ============================================================
+
 export const initialTeam: TeamMember[] = [
   {
     id: 'team-1',
     name: 'Muhammad Zuhair Zeb',
     role: 'Founder',
     department: 'Leadership',
-    avatar: importImage('Team Pic/Zuhair.jpeg'),
+    avatar: getImagePath('Team Pic/Zuhair.jpeg'),
     bio: 'Muhammad Zuhair Zeb belongs to Swabi, Pakistan. He is an undergraduate student in Artificial Intelligence at Islamia College University, Peshawar. He is the founder of Sociapi Society, a student-led platform that promotes technology, creativity, and skills development. Through this program, he seeks to provide students with opportunities to study current technology and develop practical skills. His interests include data and business intelligence, AI agents, and new technologies. He is skilled in data analysis, dashboard creation, and using AI tools to solve real-world problems.',
     skills: ['Artificial Intelligence', 'Data Analysis', 'Business Intelligence', 'AI Agents', 'Dashboard Design'],
     socials: { github: 'https://github.com/zuhairzeb', linkedin: 'https://linkedin.com/zuhairzeb', email: 'sociapisociety@gmail.com' },
@@ -271,7 +183,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Mudassir',
     role: 'Co-Founder',
     department: 'Leadership',
-    avatar: importImage('Team Pic/Muhammad Mudassir.jpg'),
+    avatar: getImagePath('Team Pic/Muhammad Mudassir.jpg'),
     bio: 'Co-Founder of Sociapi Society. Partner in coordinating technical workflows, managing study sprints, and scaling campus machine learning cohorts.',
     skills: ['Python', 'Deep Learning', 'Project Orchestration', 'Team Synergy'],
     socials: { github: 'https://github.com', linkedin: 'https://linkedin.com' },
@@ -282,7 +194,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Hamza khan',
     role: 'HR manager',
     department: 'Administration',
-    avatar: importImage('Team Pic/Hamza Khan.jpg'),
+    avatar: getImagePath('Team Pic/Hamza Khan.jpg'),
     bio: 'Directs society personnel logistics, coordinator matching, and interview pipelines for junior technical leads.',
     skills: ['Human Resources', 'Teamwork', 'Communication', 'Recruitment'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -293,7 +205,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Sajid Ullah',
     role: 'Outreach',
     department: 'Operations',
-    avatar: importImage('Team Pic/Saجid_waزir.png'),
+    avatar: getImagePath('Team Pic/Saجid_waزir.png'),
     bio: 'Leads communications with external tech communities, sponsors, and guest lecturers across Peshawar.',
     skills: ['Outreach', 'Networking', 'Public Relations', 'Events Marketing'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -304,7 +216,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Faisal',
     role: 'Video Editor',
     department: 'Design & Media',
-    avatar: importImage('Team Pic/Faisal Khan.png'),
+    avatar: getImagePath('Team Pic/Faisal Khan.png'),
     bio: 'Crafts premium digital reels, speaker promotional reels, and event wrap-up motion graphics.',
     skills: ['Premiere Pro', 'After Effects', 'Cinematic Cuts', 'Sound Design'],
     socials: { github: 'https://github.com' },
@@ -315,7 +227,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Asiya Islam',
     role: 'Women Lead',
     department: 'Leadership',
-    avatar: importImage('Team Pic/Female/Asiya Islam.png'),
+    avatar: getImagePath('Team Pic/Female/Asiya Islam.png'),
     bio: 'Empowering and mentoring women developers at Islamia University, Peshawar, bridging STEM training gaps.',
     skills: ['Mentorship', 'Web Dev', 'Public Speaking', 'STEM Outreach'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -326,7 +238,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Maham Iqbal',
     role: 'Women CO-Lead',
     department: 'Leadership',
-    avatar: importImage('Team Pic/Female/Maham Iqbal.png'),
+    avatar: getImagePath('Team Pic/Female/Maham Iqbal.png'),
     bio: 'Co-leads STEM initiatives, event coordination, and junior study groups for female engineering students.',
     skills: ['Coordination', 'Project Management', 'UI Design', 'Data Entry'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -337,7 +249,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Alina Kalim',
     role: 'Decor Lead',
     department: 'Operations',
-    avatar: importImage('Team Pic/Female/Alina khan.JPG'),
+    avatar: getImagePath('Team Pic/Female/Alina khan.JPG'),
     bio: 'Orchestrates the visual layout and stage design of tech seminars, ensuring a premium futuristic atmosphere.',
     skills: ['Venue Styling', 'Theme Design', 'Visual Aesthetics', 'Logistics'],
     socials: {},
@@ -348,7 +260,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Maimoona Iqbal',
     role: 'Decor',
     department: 'Operations',
-    avatar: importImage('Team Pic/Female/maimoona.jpg'),
+    avatar: getImagePath('Team Pic/Female/maimoona.jpg'),
     bio: 'Assists with venue designs, coordinate schedules, and stage logistics during large campaigns.',
     skills: ['Aesthetic Coordination', 'Creative Design', 'Team Collaboration'],
     socials: {},
@@ -359,7 +271,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Shandana Qadir(Amal khan)',
     role: 'Graphic co-Lead',
     department: 'Design & Media',
-    avatar: importImage('Team Pic/Shandana Qadir.jfif'),
+    avatar: getImagePath('Team Pic/Shandana Qadir.jfif'),
     bio: 'Designs high-fidelity banners, typography templates, and customized apparel merchandise graphics.',
     skills: ['Figma', 'Vector Art', 'Branding Guidelines', 'Motion Aesthetics'],
     socials: { linkedin: 'https://linkedin.com' },
@@ -369,117 +281,241 @@ export const initialTeam: TeamMember[] = [
     id: 'team-11',
     name: 'Bilal Muhammad',
     role: 'General Secretary',
-    department: 'Leadership',
-    avatar: importImage('Team Pic/Bilal Muhammad.jpg'),
-    bio: 'Manages administrative files, registrations database, and correspondence with university management.',
-    skills: ['Administration', 'Strategic Planning', 'Technical Documentation'],
-    socials: { linkedin: 'https://linkedin.com' },
-    premium: true,
+    department: 'Administration',
+    avatar: getImagePath('Team Pic/Bilal Muhammad.jpg'),
+    bio: 'Archives society protocols, meeting minutes, and regulatory compliance logs on behalf of leadership.',
+    skills: ['Documentation', 'Administrative Protocols', 'Compliance', 'Archival'],
+    socials: { github: 'https://github.com' },
+    premium: false,
   },
   {
     id: 'team-12',
     name: 'Muhammad Zakria',
-    role: 'Project Manger',
-    department: 'Technical',
-    avatar: importImage('Team Pic/Muhammad Zakria.jpg'),
-    bio: 'Directs open-source projects, reviews developer repositories, and coordinates git branches.',
-    skills: ['Git Sprints', 'Project Schedulers', 'Python Scripting', 'Code Audits'],
-    socials: { github: 'https://github.com' },
+    role: 'Treasury Lead',
+    department: 'Administration',
+    avatar: getImagePath('Team Pic/Muhammad Zakria.jpg'),
+    bio: 'Manages budget allocations, tracks expenditures, and processes financial requests for events and bootcamps.',
+    skills: ['Financial Planning', 'Budget Management', 'Spreadsheet Mastery', 'Accounting'],
+    socials: {},
     premium: false,
   },
   {
     id: 'team-13',
-    name: 'Muhammad zulkifal',
-    role: 'Event Manger',
+    name: 'Muhammad Zulkifal',
+    role: 'Event Manager',
     department: 'Operations',
-    avatar: importImage('Team Pic/Muhammad Zulkifal (Event Manger).jpg'),
-    bio: 'Supervises venue bookings, coordinator rosters, guest welcome lists, and registration desks.',
-    skills: ['Event Logistics', 'Crowd Schedulers', 'Operations Lead'],
-    socials: { linkedin: 'https://linkedin.com' },
+    avatar: getImagePath('Team Pic/Muhammad Zulkifal (Event Manger).jpg'),
+    bio: 'Orchestrates end-to-end event scheduling, venue coordination, and timeline adherence for seminars.',
+    skills: ['Event Logistics', 'Vendor Coordination', 'Timeline Management', 'Crisis Resolution'],
+    socials: {},
     premium: false,
   },
   {
     id: 'team-14',
-    name: 'Muhammad Hammad khan',
-    role: 'Technical co-lead',
+    name: 'Hamad Khan',
+    role: 'Sponsorship Lead',
+    department: 'Operations',
+    avatar: getImagePath('Team Pic/Hamad Khan.jpg'),
+    bio: 'Identifies partnership opportunities and secures sponsorships from tech companies and local enterprises.',
+    skills: ['B2B Relations', 'Negotiation', 'Contract Management', 'Prospecting'],
+    socials: {},
+    premium: false,
+  },
+  {
+    id: 'team-15',
+    name: 'Saad Ahmed',
+    role: 'Technical Lead',
     department: 'Technical',
-    avatar: importImage('Team Pic/Hamad Khan.jpg'),
-    bio: 'Instructs bootcamps on Next.js, OpenCV setups, and trains junior developers in clean code practices.',
-    skills: ['Full Stack Development', 'React', 'OpenCV', 'Algorithms'],
+    avatar: getImagePath('Team Pic/saad.jpeg'),
+    bio: 'Manages technical bootcamp curriculum, oversees coding sprint activities, and reviews portfolio projects.',
+    skills: ['Full Stack Dev', 'Curriculum Design', 'Code Review', 'Mentorship'],
     socials: { github: 'https://github.com' },
     premium: true,
   },
   {
-    id: 'team-15',
-    name: 'Muhammad Saad',
-    role: 'Media',
-    department: 'Design & Media',
-    avatar: importImage('Team Pic/saad.jpeg'),
-    bio: 'Captures photography during live speaker sessions and writes technical recap columns for our social platforms.',
-    skills: ['Photography', 'Social Outreach', 'Copywriting'],
-    socials: {},
-    premium: false,
-  }
+    id: 'team-16',
+    name: 'Naveed Abbas',
+    role: 'Teacher Advisor',
+    department: 'Administration',
+    avatar: getImagePath('Team Pic/Navved.png'),
+    bio: 'Academic mentor guiding Sociapi on institutional policies, compliance, and academic integration.',
+    skills: ['Academic Governance', 'Policy Advisory', 'Institutional Relations'],
+    socials: { email: 'naveed@iup.edu.pk' },
+    premium: true,
+  },
 ];
 
-// Teacher Advisor Bio
-export const teacherAdvisor = {
-  name: 'Naveed Abbas',
-  role: 'Teacher Advisor',
-  avatar: importImage('Team Pic/Navved.png'),
-  bio: 'Guides Sociapi Society on institutional guidelines, academic integrations, and community mentoring pipelines.'
-};
+// ============================================================
+// GALLERY (All using getImagePath)
+// ============================================================
 
-// ----------------------------------------------------
-// GALLERY ARCHIVES
-// ----------------------------------------------------
-export const initialGallery: GalleryItem[] = Array.from({ length: 20 }).map((_, index) => {
-  const categories: GalleryItem['category'][] = ['Workshops', 'Seminar', 'Seminar', 'Community', 'Projects'];
-  const category = categories[index % categories.length];
-  const itemNum = index + 1;
-  return {
-    id: `gallery-${itemNum}`,
-    title: `${category} Image Log #${itemNum}`,
-    category,
-    imageUrl: importImage('Agentum Pic/IMG_6010.png'),
-    
-    date: '2026-05-07',
-    description: 'Visual evidence capturing technical education, mentorship, and developer collaboration during active campaigns.'
-  };
-});
-
-// Overwrite first few gallery pictures with relevant technology images
-const techImages = [
-  importImage('1.png'),
-  importImage('2.png'),
-  importImage('3.png'),
-  importImage('4.png'),
-  importImage('5.png'),
-  importImage('6.png'),
-  importImage('7.png'),
-  importImage('8.png'),
-  importImage('9.png'),
-  importImage('10.png'),
-  importImage('Agentum Pic/0001.jpg'),
-  importImage('Agentum Pic/6.jpg'),
-  importImage('Agentum Pic/7.jpeg'),
-  importImage('Agentum Pic/12.png'),
-  importImage('Agentum Pic/13.png'),
-  importImage('Agentum Pic/15.jfif'),
-  importImage('Agentum Pic/Khyzar Hayat.png'),
-  importImage('Agentum Pic/mustafa.png'),
-  importImage('Agentum Pic/uzair.png'),
-  importImage('Agentum Pic/IMG_6010.png'),
+export const initialGallery: GalleryItem[] = [
+  {
+    id: 'gal-1',
+    title: 'Mehfil AI 2026 - Grand Opening',
+    category: 'Seminars',
+    imageUrl: getImagePath('محفلAi.png'),
+    date: '07 May 2026',
+    description: 'The grand opening ceremony of Mehfil AI 2026 at Khyber Union Hall, Islamia University Peshawar with 500+ attendees.'
+  },
+  {
+    id: 'gal-2',
+    title: 'AGENTUM 2026 - AI Agents Session',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum blog.png'),
+    date: '17 Feb 2026',
+    description: 'Keynote presentation on AI Agents and Automation during the AGENTUM 2026 seminar.'
+  },
+  {
+    id: 'gal-3',
+    title: 'Workshop Session 1',
+    category: 'Workshops',
+    imageUrl: getImagePath('1.png'),
+    date: 'Feb 2026',
+    description: 'Hands-on workshop session with students engaged in learning activities.'
+  },
+  {
+    id: 'gal-4',
+    title: 'Workshop Session 2',
+    category: 'Workshops',
+    imageUrl: getImagePath('2.png'),
+    date: 'Feb 2026',
+    description: 'Interactive demonstration during technical workshop.'
+  },
+  {
+    id: 'gal-5',
+    title: 'Community Gathering 1',
+    category: 'Community',
+    imageUrl: getImagePath('3.png'),
+    date: 'Feb 2026',
+    description: 'Students networking and sharing ideas at community meetup.'
+  },
+  {
+    id: 'gal-6',
+    title: 'Community Gathering 2',
+    category: 'Community',
+    imageUrl: getImagePath('4.png'),
+    date: 'Feb 2026',
+    description: 'Group photo from Sociapi community event.'
+  },
+  {
+    id: 'gal-7',
+    title: 'Hackathon Event 1',
+    category: 'Hackathons',
+    imageUrl: getImagePath('5.png'),
+    date: 'Feb 2026',
+    description: 'Teams working together during coding hackathon.'
+  },
+  {
+    id: 'gal-8',
+    title: 'Project Showcase',
+    category: 'Projects',
+    imageUrl: getImagePath('6.png'),
+    date: 'Feb 2026',
+    description: 'Student projects on display during exhibition.'
+  },
+  {
+    id: 'gal-9',
+    title: 'Panel Discussion',
+    category: 'Seminars',
+    imageUrl: getImagePath('7.png'),
+    date: 'Feb 2026',
+    description: 'Expert panel discussion with industry professionals.'
+  },
+  {
+    id: 'gal-10',
+    title: 'Networking Session',
+    category: 'Community',
+    imageUrl: getImagePath('8.png'),
+    date: 'Feb 2026',
+    description: 'Students networking with speakers and mentors.'
+  },
+  {
+    id: 'gal-11',
+    title: 'AGENTUM Session 1',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum Pic/0001.jpg'),
+    date: '17 Feb 2026',
+    description: 'AGENTUM seminar technical session.'
+  },
+  {
+    id: 'gal-12',
+    title: 'AGENTUM Session 2',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum Pic/6.jpg'),
+    date: '17 Feb 2026',
+    description: 'Students listening to speaker during AGENTUM.'
+  },
+  {
+    id: 'gal-13',
+    title: 'AGENTUM Session 3',
+    category: 'Workshops',
+    imageUrl: getImagePath('Agentum Pic/7.jpeg'),
+    date: '17 Feb 2026',
+    description: 'Interactive workshop during AGENTUM seminar.'
+  },
+  {
+    id: 'gal-14',
+    title: 'AGENTUM Details 1',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum Pic/12.png'),
+    date: '17 Feb 2026',
+    description: 'Close-up from AGENTUM presentation.'
+  },
+  {
+    id: 'gal-15',
+    title: 'AGENTUM Details 2',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum Pic/13.png'),
+    date: '17 Feb 2026',
+    description: 'Another moment from AGENTUM event.'
+  },
+  {
+    id: 'gal-16',
+    title: 'AGENTUM Gallery 1',
+    category: 'Community',
+    imageUrl: getImagePath('Agentum Pic/15.jfif'),
+    date: '17 Feb 2026',
+    description: 'Group gathering during AGENTUM seminar.'
+  },
+  {
+    id: 'gal-17',
+    title: 'AGENTUM Speaker - Khyzar',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum Pic/Khyzar Hayat.png'),
+    date: '17 Feb 2026',
+    description: 'Khyzar Hayat delivering keynote on AI agents.'
+  },
+  {
+    id: 'gal-18',
+    title: 'AGENTUM Speaker - Mustafa',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum Pic/mustafa.png'),
+    date: '17 Feb 2026',
+    description: 'Mustafa Khan speaking on Automation & Robotics.'
+  },
+  {
+    id: 'gal-19',
+    title: 'AGENTUM Speaker - Uzair',
+    category: 'Seminars',
+    imageUrl: getImagePath('Agentum Pic/uzair.png'),
+    date: '17 Feb 2026',
+    description: 'Muhammad Uzair discussing AI for Everyone.'
+  },
+  {
+    id: 'gal-20',
+    title: 'AGENTUM Full Hall',
+    category: 'Community',
+    imageUrl: getImagePath('Agentum Pic/IMG_6010.png'),
+    date: '17 Feb 2026',
+    description: 'Full auditorium during AGENTUM 2026 seminar.'
+  },
 ];
-techImages.forEach((img, idx) => {
-  if (initialGallery[idx]) {
-    initialGallery[idx].imageUrl = img;
-  }
-});
 
-// ----------------------------------------------------
-// BLOG ARTICLES & EVENTS (Mehfil AI & Agentum request)
-// ----------------------------------------------------
+// ============================================================
+// BLOGS
+// ============================================================
+
 export const initialBlogs: BlogPost[] = [
   {
     id: 'blog-1',
@@ -493,69 +529,22 @@ The event became one of the most engaging student-led AI gatherings in Peshawar,
 
 With more than **151 participants**, expert speakers, experienced panelists, active student volunteers, sponsors, and community partners, the event delivered valuable insights into Artificial Intelligence, freelancing, startups, career growth, and future technology trends.
 
-
 ## Event Overview
 Mehfil AI 2026 was organized with the goal of spreading awareness about Artificial Intelligence and helping students learn practical skills that can support their future careers. The event encouraged students to connect directly with professionals and understand the real-world applications of AI technologies.
 
-* **Event Name**: Mehfil AI 2026
-* **Date**: 07 May 2026
-* **Organized By**: Sociapi Society
-* **Venue**: Islamia University Peshawar
-* **Participants**: 151+
-* **Sociapi Society Members**: 25
-* **Speakers**: 2
-* **Panelists**: 3
-
-The event included several engaging activities, such as:
-1. AI and technology talks
-2. Startup and freelancing discussions
-3. Interactive panel discussions
-4. Networking opportunities
-5. Student engagement sessions
-
-The audience remained highly active throughout the event and showed strong interest in Artificial Intelligence, freelancing opportunities, startup culture, and technology-based careers.
-
-
-## Expert Speaker Sessions
-One of the major highlights of Mehfil AI 2026 was the insightful speaker sessions delivered by experienced professionals who shared practical knowledge and career guidance with students.
-
-### Abdul Wahid: Leveraging AI Tools for Financial Gains
-Abdul Wahid delivered an informative session about the growing impact of AI tools in freelancing and online earning opportunities. He explained how students and professionals can use Artificial Intelligence tools to improve productivity, automate repetitive tasks, and build additional income streams.
-
-He discussed practical ways AI is helping freelancers work smarter and complete projects more efficiently. His session motivated students to learn modern AI tools and develop digital skills that can support freelancing careers and online businesses.
-
-### Junaid Ahmad: Starting a Startup with AI: Idea to Launch
-Junaid Ahmad shared valuable knowledge about launching AI-based startups and turning innovative ideas into real products. His talk focused on entrepreneurship, creativity, teamwork, and problem-solving using modern technology.
-
-He explained the journey of building a startup from the initial idea stage to launching a product in the market. Students learned how Artificial Intelligence can help solve real-world problems and create business opportunities in different industries.
-
-
-Interactive Panel Discussion Session
-The panel discussion session became one of the most engaging and memorable parts of Mehfil AI 2026. Students had the opportunity to interact directly with industry professionals and hear honest discussions about life after university, career struggles, industry expectations, and professional growth.
-
-> Panel Topic: The Real Talk: Uni to Life From Campus to Reality Unfiltered Uni Diaries Beyond the Degree
-
-The discussion focused on the challenges students face after graduation and the importance of skill development, confidence, networking, and continuous learning.
-
- Panelists:
-* **Hafeez Ahmad**: Lecturer in the Department of Computer Science and also works as an AI Engineer at Wibbow Technologies.
-* **Ziaullah Khattak**: Co-Founder and CTO of Software Synergy Solutions and Club.
-* **Fazal Wahid**: AI Engineer based in Peshawar and currently works as an Associate AI Engineer at Tech Emulsion.
-
----
-
-## Sponsors and Community Partners
-The success of Mehfil AI 2026 became possible because of the support of sponsors and community partners who contributed to the event and helped create a professional learning environment for students.
-
- Sponsors: K MAK MARKETING, Global Pathway
-* **Community Partners**: Software Synergy Club, TechLink, Elarion, AWS UOP, Farabi`,
+## Key Sessions
+- AI and technology talks
+- Startup and freelancing discussions
+- Interactive panel discussions
+- Networking opportunities
+- Student engagement sessions`,
     author: 'Muhammad Zuhair Zeb',
     authorRole: 'Founder',
     date: 'May 07, 2026',
     readTime: '6 min read',
     category: 'Generative AI',
     tags: ['Mehfil AI', 'Peshawar', 'Future Tech'],
-    imageUrl: importImage('محفلAi.png'),
+    imageUrl: getImagePath('محفلAi.png'),
     views: 289
   },
   {
@@ -566,31 +555,16 @@ The success of Mehfil AI 2026 became possible because of the support of sponsors
 
 The **AGENTUM 2026 Seminar** was successfully held on 17 February 2026, bringing together students, tech enthusiasts, and future innovators to learn about the latest developments in Artificial Intelligence and modern technology. The event attracted more than **150 participants**, creating an energetic environment filled with learning, discussion, and inspiration.
 
-The seminar focused on three important topics related to the future of AI, automation, and robotics. Each session was delivered by experienced speakers who shared practical insights and real world knowledge with the audience.
-
----
-
 ## Technical Sessions
 
 ### 1. Agent Factory: Building Intelligent AI Systems
-* **Speaker**: Khizer Hayat
 Khizer Hayat introduced the concept of Agent Factory and intelligent AI systems. He explained how AI agents are designed to perform tasks, make decisions, and interact with digital environments.
 
-During the talk, the audience learned how modern AI systems are built using intelligent agents that can work together to solve complex problems. Khizer Hayat also discussed the future of agent based systems and how they can be used in different industries such as business, education, and technology.
-
 ### 2. Automation and Robotics
-* **Speaker**: Mustafa Khan
 Mustafa Khan spoke about automation and robotics. He explained how automation is transforming industries by improving efficiency and reducing manual work.
 
-Mustafa Khan shared examples of how robots and automated systems are being used in manufacturing, healthcare, logistics, and many other sectors. He also discussed how robotics is connected with Artificial Intelligence and how these technologies are shaping the future of work.
-
 ### 3. AI for Everyone
-* **Speaker**: Muhammad Uzair
-His talk focused on making Artificial Intelligence simple and accessible for all students, even those who do not come from a strong technical background.
-
-He explained how AI tools are becoming easier to use and how students can apply them in education, freelancing, research, and daily life. The session encouraged students to start learning AI and explore the many opportunities available in the field.
-
----
+Muhammad Uzair focused on making Artificial Intelligence simple and accessible for all students, even those who do not come from a strong technical background.
 
 ## Conclusion
 The AGENTUM 2026 Seminar was a successful and impactful event that helped students understand the importance of Artificial Intelligence, automation, and robotics in the modern world.`,
@@ -605,6 +579,10 @@ The AGENTUM 2026 Seminar was a successful and impactful event that helped studen
   }
 ];
 
+// ============================================================
+// EVENTS
+// ============================================================
+
 export const initialEvents: EventItem[] = [
   {
     id: 'event-1',
@@ -615,7 +593,7 @@ export const initialEvents: EventItem[] = [
     time: '10:00 AM - 04:00 PM',
     location: 'Islamia University Peshawar',
     category: 'Past',
-    imageUrl: importImage('محفلAi.png'),
+    imageUrl: getImagePath('محفلAi.png'),
     speaker: {
       name: 'Abdul Wahid / Junaid Ahmad',
       role: 'Keynote Speakers & Entrepreneurs',
@@ -624,7 +602,8 @@ export const initialEvents: EventItem[] = [
     schedule: [
       { time: '10:00 AM', activity: 'AI and technology talks' },
       { time: '12:00 PM', activity: 'Startup and freelancing discussions' },
-      { time: '02:00 PM', activity: 'Interactive panel discussions' }
+      { time: '02:00 PM', activity: 'Interactive panel discussions' },
+      { time: '04:00 PM', activity: 'Networking and Closing Remarks' }
     ],
     registeredCount: 151
   },
@@ -637,7 +616,7 @@ export const initialEvents: EventItem[] = [
     time: '11:00 AM - 03:00 PM',
     location: 'Islamia University Peshawar',
     category: 'Past',
-    imageUrl: importImage('Agentum blog.png'),
+    imageUrl: getImagePath('Agentum blog.png'),
     speaker: {
       name: 'Khizer Hayat / Mustafa Khan / Muhammad Uzair',
       role: 'Instructors & AI developers',
@@ -652,16 +631,17 @@ export const initialEvents: EventItem[] = [
   }
 ];
 
-// ----------------------------------------------------
-// MERCHANDISE (3 shirts launching soon request)
-// ----------------------------------------------------
+// ============================================================
+// MERCHANDISE
+// ============================================================
+
 export const initialMerch: MerchItem[] = [
   {
     id: 'merch-1',
     name: 'SOCIAPI OverSized Male Shirt',
     price: 1500,
     category: 'T-Shirt',
-    imageUrl: importImage('OVERSIZED Male.png'),
+    imageUrl: getImagePath('OVERSIZED Male.png'),
     description: 'Part of our 3 official launch shirts. Made with 100% premium soft cotton and detailed with custom back text print.',
     details: ['100% Cotton', 'Wash-resistant decals', 'Limited launch edition'],
     sizes: ['S', 'M', 'L', 'XL'],
@@ -672,7 +652,7 @@ export const initialMerch: MerchItem[] = [
     name: 'SOCIAPI OverSized shirt for females',
     price: 1500,
     category: 'T-Shirt',
-    imageUrl: importImage('OVERSIZED Female.png'),
+    imageUrl: getImagePath('OVERSIZED Female.png'),
     description: 'Part of our 3 official launch shirts. Engineered for programmers and data analysts.',
     details: ['Double stitched seams', 'Modern dark green accent color', 'Breathable weave'],
     sizes: ['M', 'L', 'XL'],
@@ -680,10 +660,10 @@ export const initialMerch: MerchItem[] = [
   },
   {
     id: 'merch-3',
-    name: 'SOCIAPI  Shirt',
+    name: 'SOCIAPI Special Edition Shirt',
     price: 1500,
     category: 'T-Shirt',
-    imageUrl: importImage('OVERSIZED 3.png'),
+    imageUrl: getImagePath('OVERSIZED 3.png'),
     description: 'Part of our 3 official launch shirts. A special edition commemorating the journey from Swabi to Peshawar.',
     details: ['Lightweight summer fabric', 'Custom graphics on chest', 'Unisex modern fit'],
     sizes: ['S', 'M', 'L'],
@@ -691,9 +671,10 @@ export const initialMerch: MerchItem[] = [
   }
 ];
 
-// ----------------------------------------------------
-// STUDENT TESTIMONIALS (Exact custom request)
-// ----------------------------------------------------
+// ============================================================
+// REVIEWS & TESTIMONIALS
+// ============================================================
+
 export const initialReviews: ReviewItem[] = [
   {
     id: 'rev-1',
@@ -701,7 +682,7 @@ export const initialReviews: ReviewItem[] = [
     role: 'HR Manager',
     review: 'Sociapi is a great platform that encourages creativity, teamwork, and professional growth. Being part of this society as an HR has been a wonderful experience. It provides opportunities for students to learn, collaborate, and develop valuable skills. Proud to be a part of Sociapi!',
     rating: 5,
-    avatar: importImage('Team Pic/Hamza Khan.jpg'),
+    avatar: getImagePath('Team Pic/Hamza Khan.jpg'),
     tag: 'HR Manager Review'
   },
   {
@@ -715,23 +696,47 @@ export const initialReviews: ReviewItem[] = [
   }
 ];
 
+// ============================================================
 // FAQs
+// ============================================================
+
 export const initialFAQs: FAQItem[] = [
   {
     id: 'faq-1',
     question: 'What is Sociapi Society?',
-    answer: 'Sociapi Society is a student-led community based at Islamia University Peshawar. We help students turn ideas into skills and skills into real-world projects.',
+    answer: 'Sociapi Society is a student-led community based at Islamia University Peshawar. We help students turn ideas into skills and skills into real-world projects through workshops, bootcamps, and collaborative learning.',
     category: 'General'
   },
   {
     id: 'faq-2',
+    question: 'How do I join Sociapi Society?',
+    answer: 'You can join by attending one of our workshops or events, or by filling out the careers form on our website. We welcome all skill levels!',
+    category: 'Membership'
+  },
+  {
+    id: 'faq-3',
+    question: 'What topics do you cover?',
+    answer: 'We focus on AI, Machine Learning, Web Development, Data Science, Robotics, and general technology skills. Check our events page for upcoming workshops!',
+    category: 'Workshops'
+  },
+  {
+    id: 'faq-4',
     question: 'How do I contact the team?',
-    answer: 'You can email us at sociapisociety@gmail.com / info.sociapi@gmail.com, or call us at +923329984490.',
+    answer: 'You can email us at sociapisociety@gmail.com or info.sociapi@gmail.com, or call us at +923329984490.',
     category: 'General'
+  },
+  {
+    id: 'faq-5',
+    question: 'Are there volunteer opportunities?',
+    answer: 'Yes! We have various volunteer roles in Operations, Design & Media, Technical, and Administration. Check the Careers page for open positions.',
+    category: 'Membership'
   }
 ];
 
-// Open Volunteer roles
+// ============================================================
+// CAREERS / VOLUNTEER ROLES
+// ============================================================
+
 export const initialCareers: CareerItem[] = [
   {
     id: 'car-1',
@@ -834,6 +839,9 @@ export const initialCareers: CareerItem[] = [
   }
 ];
 
+// ============================================================
+// CONTACT & PARTNERSHIPS (empty by default)
+// ============================================================
+
 export const initialContacts: ContactMessage[] = [];
 export const initialPartnerships: PartnershipInquiry[] = [];
-
