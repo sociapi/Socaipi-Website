@@ -1,9 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Briefcase, MapPin, Clock, Check, X, AlertCircle, Upload, ArrowLeft } from 'lucide-react';
 import { CareerItem } from '../data/initialData';
 
 interface CareersProps {
   careers: CareerItem[];
+}
+
+interface ApplicationData {
+  id: string;
+  submittedAt: string;
+  fullName: string;
+  email: string;
+  whatsapp: string;
+  department: string;
+  semester: string;
+  fromPeshawar: string;
+  whySelect: string;
+  experience: string;
+  linkedin: string;
+  instagram: string;
+  heardAbout: string;
+  role: string;
+  resumeFileName: string;
+  pictureFileName: string;
 }
 
 export const Careers: React.FC<CareersProps> = ({ careers }) => {
@@ -29,6 +48,28 @@ export const Careers: React.FC<CareersProps> = ({ careers }) => {
   
   const [uploadProgress, setUploadProgress] = useState(0);
   const [applySuccess, setApplySuccess] = useState(false);
+  const [applications, setApplications] = useState<ApplicationData[]>([]);
+  const [showAdminLog, setShowAdminLog] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('sociapiApplications');
+    if (stored) {
+      try {
+        setApplications(JSON.parse(stored));
+      } catch {
+        setApplications([]);
+      }
+    }
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      setShowAdminLog(params.get('admin') === 'true');
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('sociapiApplications', JSON.stringify(applications));
+  }, [applications]);
 
   const handleApplySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -112,6 +153,28 @@ export const Careers: React.FC<CareersProps> = ({ careers }) => {
         });
         setUploadProgress(0);
 
+        setApplications((prev) => [
+          {
+            id: `${Date.now()}`,
+            submittedAt: new Date().toLocaleString(),
+            fullName: formData.fullName,
+            email: formData.email,
+            whatsapp: formData.whatsapp,
+            department: formData.department,
+            semester: formData.semester,
+            fromPeshawar: formData.fromPeshawar,
+            whySelect: formData.whySelect,
+            experience: formData.experience,
+            linkedin: formData.linkedin,
+            instagram: formData.instagram,
+            heardAbout: formData.heardAbout,
+            role: selectedRole?.title || '',
+            resumeFileName: formData.resumeFile?.name || '',
+            pictureFileName: formData.pictureFile?.name || ''
+          },
+          ...prev
+        ]);
+
         setTimeout(() => {
           setApplySuccess(false);
           setIsApplyModalOpen(false);
@@ -164,6 +227,9 @@ export const Careers: React.FC<CareersProps> = ({ careers }) => {
         </h1>
         <p className="text-xs text-[#939596] leading-relaxed">
           Unlock exclusive technical access, leadership certification, and developer bootcamps by volunteering with the Sociapi Society.
+        </p>
+        <p className="text-[10px] text-[#7bd355] uppercase tracking-wider font-semibold">
+          Applications are submitted.
         </p>
         
         {/* Highlighted Open Volunteer positions list */}
@@ -536,6 +602,46 @@ export const Careers: React.FC<CareersProps> = ({ careers }) => {
             )}
 
           </div>
+        </div>
+      )}
+
+      {showAdminLog && applications.length > 0 && (
+        <div className="bg-[#111111] border border-[#333333] rounded-3xl p-6 space-y-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h2 className="text-lg font-futuristic font-bold text-[#e8ecee]">Applicant Log</h2>
+              <p className="text-[10px] text-[#939596]">Admin-only application records stored locally in your browser.</p>
+            </div>
+            <span className="text-[10px] uppercase tracking-widest text-[#7bd355] font-bold">{applications.length} submission{applications.length === 1 ? '' : 's'}</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {applications.slice(0, 6).map((application) => (
+              <div key={application.id} className="bg-[#161616] border border-[#333333] rounded-2xl p-4 space-y-2">
+                <div className="flex items-center justify-between gap-2">
+                  <div>
+                    <h3 className="text-sm font-bold text-[#e8ecee]">{application.fullName}</h3>
+                    <span className="text-[10px] text-[#939596]">{application.role}</span>
+                  </div>
+                  <span className="text-[9px] text-[#7bd355] uppercase">{application.semester}</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-[9px] text-[#939596]">
+                  <span>Email: {application.email}</span>
+                  <span>WhatsApp: {application.whatsapp}</span>
+                  <span>LinkedIn: {application.linkedin}</span>
+                  <span>Instagram: {application.instagram}</span>
+                </div>
+                <div className="text-[9px] text-[#939596] space-y-1">
+                  <p><span className="font-bold text-[#e8ecee]">From:</span> {application.department}</p>
+                  <p><span className="font-bold text-[#e8ecee]">Peshawar:</span> {application.fromPeshawar}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {applications.length > 6 && (
+            <div className="text-[10px] text-[#939596]">Showing the 6 most recent entries. Add <span className="text-[#7bd355]">?admin=true</span> to the page URL to view this admin-only panel.</div>
+          )}
         </div>
       )}
 

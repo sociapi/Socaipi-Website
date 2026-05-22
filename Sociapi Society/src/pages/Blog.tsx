@@ -70,6 +70,19 @@ export const Blog: React.FC<BlogProps> = ({ blogs, setBlogs }) => {
     };
   }, [activePost]);
 
+  useEffect(() => {
+    if (!activePost) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setActivePost(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activePost]);
+
   // Find related articles (same category or shared tags)
   const relatedArticles = activePost 
     ? blogs.filter((b) => b.id !== activePost.id && (b.category === activePost.category || b.tags.some(t => activePost.tags.includes(t)))).slice(0, 2)

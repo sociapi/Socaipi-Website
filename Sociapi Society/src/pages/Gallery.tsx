@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Maximize2, Calendar, Folder } from 'lucide-react';
 import { GalleryItem } from '../data/initialData';
 
@@ -29,6 +29,12 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
 
   const closeLightbox = () => setLightboxIndex(null);
 
+  const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      closeLightbox();
+    }
+  };
+
   const handlePrev = () => {
     if (lightboxIndex === null) return;
     setLightboxIndex((prev) => 
@@ -44,6 +50,25 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
   };
 
   const activeLightboxItem = lightboxIndex !== null ? filteredGallery[lightboxIndex] : null;
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+      if (event.key === 'ArrowLeft') {
+        handlePrev();
+      }
+      if (event.key === 'ArrowRight') {
+        handleNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex]);
 
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-8 py-28 space-y-12 relative z-10">
@@ -115,7 +140,10 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
 
       {/* LIGHTBOX COMPONENT MODAL */}
       {activeLightboxItem && (
-        <div className="fixed inset-0 z-55 flex items-center justify-center bg-[#121212]/95 backdrop-blur-md p-4">
+        <div
+          onClick={handleOverlayClick}
+          className="fixed inset-0 z-60 flex items-center justify-center bg-[#121212]/95 backdrop-blur-md p-4"
+        >
           
           {/* Close trigger */}
           <button
@@ -142,13 +170,13 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
           </button>
 
           {/* Main Content Pane */}
-          <div className="w-full max-w-4xl max-h-[85vh] flex flex-col items-center justify-center space-y-4">
+          <div className="w-full max-w-[92vw] max-h-[92vh] overflow-hidden flex flex-col items-center justify-center space-y-4">
             
-            <div className="relative rounded-2xl overflow-hidden border border-[#333333] max-h-[60vh] flex items-center justify-center bg-black">
+            <div className="relative rounded-2xl overflow-hidden border border-[#333333] max-h-[72vh] max-w-full w-full flex items-center justify-center bg-black">
               <img 
                 src={activeLightboxItem.imageUrl} 
                 alt={activeLightboxItem.title} 
-                className="max-w-full max-h-[60vh] object-contain"
+                className="w-auto max-w-full h-auto max-h-[72vh] object-contain"
               />
             </div>
 

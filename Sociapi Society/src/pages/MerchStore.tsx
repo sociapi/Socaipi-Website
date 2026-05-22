@@ -305,7 +305,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
 
       {/* SHOPPING CART DRAWER PANEL */}
       {isCartOpen && (
-        <div className="fixed inset-0 z-55 flex justify-end bg-[#121212]/80 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-50 flex justify-end bg-[#121212]/80 backdrop-blur-sm p-4">
           <div className="w-full max-w-md bg-[#1e1e1e] border-l border-[#7bd355]/30 shadow-2xl flex flex-col justify-between h-full rounded-2xl overflow-hidden">
             
             {/* Drawer Header */}
