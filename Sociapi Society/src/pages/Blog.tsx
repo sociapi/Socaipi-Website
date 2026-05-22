@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Eye, ArrowLeft, Clock, Copy, Check } from 'lucide-react';
+import { Search, Eye, ArrowLeft, Clock, Copy, Check, X } from 'lucide-react';
 import { BlogPost } from '../data/initialData';
 
 interface BlogProps {
@@ -219,14 +219,23 @@ export const Blog: React.FC<BlogProps> = ({ blogs, setBlogs }) => {
             />
           </div>
 
-          {/* Back Action button */}
-          <button 
-            onClick={() => setActivePost(null)}
-            className="inline-flex items-center space-x-2 py-2 px-4 rounded-xl bg-[#333333] text-[#7bd355] border border-[#7bd355]/20 hover:border-[#7bd355] text-xs font-bold uppercase tracking-widest transition-all"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Archive Index</span>
-          </button>
+          {/* Back Action button & Close button */}
+          <div className="flex items-center justify-between gap-2">
+            <button 
+              onClick={() => setActivePost(null)}
+              className="inline-flex items-center space-x-2 py-2 px-4 rounded-xl bg-[#333333] text-[#7bd355] border border-[#7bd355]/20 hover:border-[#7bd355] text-xs font-bold uppercase tracking-widest transition-all"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Archive Index</span>
+            </button>
+            <button 
+              onClick={() => setActivePost(null)}
+              className="p-2 rounded-full bg-[#333333] text-[#939596] border border-[#7bd355]/20 hover:border-[#7bd355] hover:text-[#7bd355] transition-all"
+              title="Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
 
           {/* Header Metadata */}
           <div className="space-y-4">
@@ -263,7 +272,7 @@ export const Blog: React.FC<BlogProps> = ({ blogs, setBlogs }) => {
           {/* Main Content Body */}
           <div 
             ref={articleContainerRef}
-            className="prose prose-invert max-w-none text-sm leading-relaxed text-[#e8ecee] space-y-6 pt-4 border-t border-[#333333]"
+            className="prose prose-invert max-w-full text-sm leading-relaxed text-[#e8ecee] space-y-6 pt-4 border-t border-[#333333] overflow-hidden"
           >
             {/* Extremely simple & performant custom markdown visualizer to style headings and code blocks */}
             {activePost.content.split('\n\n').map((para, pIdx) => {
@@ -298,8 +307,8 @@ export const Blog: React.FC<BlogProps> = ({ blogs, setBlogs }) => {
               if (para.startsWith('```')) {
                 const codeLines = para.split('\n').filter(line => !line.startsWith('```'));
                 return (
-                  <pre key={pIdx} className="bg-[#121212] border border-[#333333] p-4 rounded-xl overflow-x-auto font-mono text-xs text-[#7bd355]">
-                    <code>{codeLines.join('\n')}</code>
+                  <pre key={pIdx} className="bg-[#121212] border border-[#333333] p-4 rounded-xl overflow-x-auto font-mono text-xs text-[#7bd355] max-w-full w-full">
+                    <code className="block whitespace-pre-wrap break-words">{codeLines.join('\n')}</code>
                   </pre>
                 );
               }
