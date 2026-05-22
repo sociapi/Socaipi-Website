@@ -27,6 +27,28 @@ import oversized3Img from '../Image/OVERSIZED 3.png';
 // @ts-ignore - File has special characters in name
 import mahfalmAiImg from '../Image/محفلAi.png';
 
+// Gallery/Agentum images
+import img1 from '../Image/1.png';
+import img2 from '../Image/2.png';
+import img3 from '../Image/3.png';
+import img4 from '../Image/4.png';
+import img5 from '../Image/5.png';
+import img6 from '../Image/6.png';
+import img7 from '../Image/7.png';
+import img8 from '../Image/8.png';
+import img9 from '../Image/9.png';
+import img10 from '../Image/10.png';
+import agentum0001Img from '../Image/Agentum Pic/0001.jpg';
+import agentum6Img from '../Image/Agentum Pic/6.jpg';
+import agentum7Img from '../Image/Agentum Pic/7.jpeg';
+import agentum12Img from '../Image/Agentum Pic/12.png';
+import agentum13Img from '../Image/Agentum Pic/13.png';
+import agentum15Img from '../Image/Agentum Pic/15.jfif';
+import khyzarImg from '../Image/Agentum Pic/Khyzar Hayat.png';
+import mustafaImg from '../Image/Agentum Pic/mustafa.png';
+import uzairImg from '../Image/Agentum Pic/uzair.png';
+import img6010Img from '../Image/Agentum Pic/IMG_6010.png';
+
 // Map image names to imports for fallback
 const imageMap: Record<string, string> = {
   'ss.png': '',
@@ -46,12 +68,32 @@ const imageMap: Record<string, string> = {
   'Team Pic/Hamad Khan.jpg': hamadImg,
   'Team Pic/saad.jpeg': saadImg,
   'Team Pic/Navved.png': navvedImg,
-  'Agentum Pic/IMG_6010.png': agentumImg,
   'محفلAi.png': mahfalmAiImg,
   'Agentum blog.png': agentumBlogImg,
   'OVERSIZED Male.png': oversizedMaleImg,
   'OVERSIZED Female.png': oversizedFemaleImg,
   'OVERSIZED 3.png': oversized3Img,
+  // Gallery images
+  '1.png': img1,
+  '2.png': img2,
+  '3.png': img3,
+  '4.png': img4,
+  '5.png': img5,
+  '6.png': img6,
+  '7.png': img7,
+  '8.png': img8,
+  '9.png': img9,
+  '10.png': img10,
+  'Agentum Pic/0001.jpg': agentum0001Img,
+  'Agentum Pic/6.jpg': agentum6Img,
+  'Agentum Pic/7.jpeg': agentum7Img,
+  'Agentum Pic/12.png': agentum12Img,
+  'Agentum Pic/13.png': agentum13Img,
+  'Agentum Pic/15.jfif': agentum15Img,
+  'Agentum Pic/Khyzar Hayat.png': khyzarImg,
+  'Agentum Pic/mustafa.png': mustafaImg,
+  'Agentum Pic/uzair.png': uzairImg,
+  'Agentum Pic/IMG_6010.png': img6010Img,
 };
 
 const importImage = (path: string): string => {
