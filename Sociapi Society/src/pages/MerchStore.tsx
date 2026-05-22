@@ -81,7 +81,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
     const orderSummary = `SOCIAPI MERCH ORDER SUMMARY:\n\n${orderLines.join('\n')}\n\nTotal Price: Rs. ${totalPrice}\n\nCustomer Details:\nName: ${checkName}\nPhone: ${checkPhone}\nAddress: ${checkAddress}\n\nPayment Method: Cash On Delivery (COD)`;
 
     const text = encodeURIComponent(orderSummary);
-    window.open(`https://wa.me/923000000000?text=${text}`, '_blank');
+    window.open(`https://wa.me/+923329984490?text=${text}`, '_blank');
 
     setCheckSuccess(true);
     setCart([]); // Clear cart
