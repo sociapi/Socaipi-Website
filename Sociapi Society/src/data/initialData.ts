@@ -1,13 +1,13 @@
 // CENTRALIZED SOCIAPI DATABASE FILE
-// OPTIMIZED: All image imports removed, using dynamic paths instead
+// FIX: Images moved to public/Image/ — using direct public paths instead of new URL()
 
-// ✅ NEW: getImagePath function (replaces all imports)
+// ✅ FIXED: getImagePath now uses public folder (no Vite bundling issues)
 export const getImagePath = (filename: string): string => {
-  return new URL(`../Image/${filename}`, import.meta.url).href;
+  return `/Image/${filename}`;
 };
 
 // ============================================================
-// INTERFACES (No changes)
+// INTERFACES
 // ============================================================
 
 export interface TeamMember {
@@ -205,7 +205,6 @@ export const initialTeam: TeamMember[] = [
     name: 'Sajid Ullah',
     role: 'Outreach',
     department: 'Operations',
-    // ✅ FIXED: Renamed file from 'Saجid_waزir.png' to 'Sajid_Wazir.png' (removed Arabic characters)
     avatar: getImagePath('Team Pic/Sajid_Wazir.png'),
     bio: 'Leads communications with external tech communities, sponsors, and guest lecturers across Peshawar.',
     skills: ['Outreach', 'Networking', 'Public Relations', 'Events Marketing'],
@@ -354,7 +353,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-1',
     title: 'Mehfil AI 2026 - Grand Opening',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Mehfil_AI.png'),
     date: '07 May 2026',
     description: 'The grand opening ceremony of Mehfil AI 2026 at Khyber Union Hall, Islamia University Peshawar with 500+ attendees.'
@@ -362,7 +361,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-2',
     title: 'AGENTUM 2026 - AI Agents Session',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum blog.png'),
     date: '17 Feb 2026',
     description: 'Keynote presentation on AI Agents and Automation during the AGENTUM 2026 seminar.'
@@ -418,7 +417,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-9',
     title: 'Panel Discussion',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('7.png'),
     date: 'Feb 2026',
     description: 'Expert panel discussion with industry professionals.'
@@ -434,7 +433,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-11',
     title: 'AGENTUM Session 1',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum Pic/0001.jpg'),
     date: '17 Feb 2026',
     description: 'AGENTUM seminar technical session.'
@@ -442,7 +441,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-12',
     title: 'AGENTUM Session 2',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum Pic/6.jpg'),
     date: '17 Feb 2026',
     description: 'Students listening to speaker during AGENTUM.'
@@ -458,7 +457,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-14',
     title: 'AGENTUM Details 1',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum Pic/12.png'),
     date: '17 Feb 2026',
     description: 'Close-up from AGENTUM presentation.'
@@ -466,7 +465,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-15',
     title: 'AGENTUM Details 2',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum Pic/13.png'),
     date: '17 Feb 2026',
     description: 'Another moment from AGENTUM event.'
@@ -482,7 +481,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-17',
     title: 'AGENTUM Speaker - Khyzar',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum Pic/Khyzar Hayat.png'),
     date: '17 Feb 2026',
     description: 'Khyzar Hayat delivering keynote on AI agents.'
@@ -490,7 +489,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-18',
     title: 'AGENTUM Speaker - Mustafa',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum Pic/mustafa.png'),
     date: '17 Feb 2026',
     description: 'Mustafa Khan speaking on Automation & Robotics.'
@@ -498,7 +497,7 @@ export const initialGallery: GalleryItem[] = [
   {
     id: 'gal-19',
     title: 'AGENTUM Speaker - Uzair',
-    category: 'Seminars',
+    category: 'Seminar',
     imageUrl: getImagePath('Agentum Pic/uzair.png'),
     date: '17 Feb 2026',
     description: 'Muhammad Uzair discussing AI for Everyone.'
