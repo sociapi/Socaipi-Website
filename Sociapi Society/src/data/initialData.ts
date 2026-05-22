@@ -392,7 +392,7 @@ export const teacherAdvisor = {
 // GALLERY ARCHIVES
 // ----------------------------------------------------
 export const initialGallery: GalleryItem[] = Array.from({ length: 20 }).map((_, index) => {
-  const categories: GalleryItem['category'][] = ['Workshops', 'Seminars', 'Seminars', 'Community', 'Projects'];
+  const categories: GalleryItem['category'][] = ['Workshops', 'Seminar', 'Seminar', 'Community', 'Projects'];
   const category = categories[index % categories.length];
   const itemNum = index + 1;
   return {
@@ -662,7 +662,6 @@ export const initialReviews: ReviewItem[] = [
     role: 'HR Manager',
     review: 'Sociapi is a great platform that encourages creativity, teamwork, and professional growth. Being part of this society as an HR has been a wonderful experience. It provides opportunities for students to learn, collaborate, and develop valuable skills. Proud to be a part of Sociapi!',
     rating: 5,
-    imageUrl: importImage('Team Pic/Hamza Khan.jpg'),
     avatar: 'Sociapi Society/src/Image/Team Pic/Hamza Khan.jpg',
     tag: 'HR Manager Review'
   },
