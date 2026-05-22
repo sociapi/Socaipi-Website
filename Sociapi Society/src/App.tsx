@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Terminal as TerminalIcon } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Data imports
 import { 
@@ -282,6 +283,9 @@ export default function App() {
 
       {/* Futuristic footer elements */}
       <Footer setCurrentPage={setCurrentPage} />
+
+      {/* Vercel Speed Insights - Performance monitoring */}
+      <SpeedInsights />
 
     </div>
   );
