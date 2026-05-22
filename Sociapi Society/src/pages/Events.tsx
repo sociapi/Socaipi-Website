@@ -142,8 +142,8 @@ export const Events: React.FC<EventsProps> = ({ events, setEvents }) => {
 
       {/* EVENT DETAIL MODAL */}
       {selectedEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121212]/90 backdrop-blur-md overflow-y-auto">
-          <div className="relative w-full max-w-4xl bg-[#1e1e1e] border border-[#7bd355]/30 rounded-2xl flex flex-col md:flex-row shadow-2xl overflow-hidden my-8 max-h-[90vh]">
+        <div className="fixed inset-0 z-70 flex items-start justify-center pt-24 p-4 bg-[#121212]/90 backdrop-blur-md overflow-y-auto">
+          <div className="relative w-full max-w-4xl bg-[#1e1e1e] border border-[#7bd355]/30 rounded-2xl flex flex-col md:flex-row shadow-2xl overflow-hidden my-8 max-h-[calc(100vh-6rem)]">
             
             {/* Event visual left panel */}
             <div className="w-full md:w-2/5 relative h-48 md:h-auto overflow-hidden bg-[#161616] shrink-0">
@@ -255,7 +255,7 @@ export const Events: React.FC<EventsProps> = ({ events, setEvents }) => {
 
       {/* REGISTRATION SUB-MODAL */}
       {isRegModalOpen && selectedEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#121212]/95 backdrop-blur-sm">
+        <div className="fixed inset-0 z-70 flex items-start justify-center pt-24 p-4 bg-[#121212]/95 backdrop-blur-sm">
           <div className="relative w-full max-w-md bg-[#1e1e1e] border border-[#7bd355]/40 rounded-2xl p-6 shadow-2xl space-y-6">
             <div className="flex items-center justify-between">
               <h3 className="font-futuristic font-bold text-xs uppercase tracking-widest text-[#7bd355]">Enlistment Form</h3>

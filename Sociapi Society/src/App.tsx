@@ -160,7 +160,7 @@ export default function App() {
       case 'team':
         return <Team team={team} />;
       case 'gallery':
-        return <Gallery gallery={gallery} />;
+        return <Gallery gallery={gallery} setCurrentPage={setCurrentPage} />;
       case 'partners':
         return <Partner partnerships={partnerships} setPartnerships={setPartnerships} />;
       case 'reviews':
