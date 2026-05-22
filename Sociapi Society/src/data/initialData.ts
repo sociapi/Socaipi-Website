@@ -493,7 +493,6 @@ The event became one of the most engaging student-led AI gatherings in Peshawar,
 
 With more than **151 participants**, expert speakers, experienced panelists, active student volunteers, sponsors, and community partners, the event delivered valuable insights into Artificial Intelligence, freelancing, startups, career growth, and future technology trends.
 
----
 
 ## Event Overview
 Mehfil AI 2026 was organized with the goal of spreading awareness about Artificial Intelligence and helping students learn practical skills that can support their future careers. The event encouraged students to connect directly with professionals and understand the real-world applications of AI technologies.
@@ -516,7 +515,6 @@ The event included several engaging activities, such as:
 
 The audience remained highly active throughout the event and showed strong interest in Artificial Intelligence, freelancing opportunities, startup culture, and technology-based careers.
 
----
 
 ## Expert Speaker Sessions
 One of the major highlights of Mehfil AI 2026 was the insightful speaker sessions delivered by experienced professionals who shared practical knowledge and career guidance with students.
@@ -531,16 +529,15 @@ Junaid Ahmad shared valuable knowledge about launching AI-based startups and tur
 
 He explained the journey of building a startup from the initial idea stage to launching a product in the market. Students learned how Artificial Intelligence can help solve real-world problems and create business opportunities in different industries.
 
----
 
-## Interactive Panel Discussion Session
+Interactive Panel Discussion Session
 The panel discussion session became one of the most engaging and memorable parts of Mehfil AI 2026. Students had the opportunity to interact directly with industry professionals and hear honest discussions about life after university, career struggles, industry expectations, and professional growth.
 
-> **Panel Topic**: The Real Talk: Uni to Life From Campus to Reality Unfiltered Uni Diaries Beyond the Degree
+> Panel Topic: The Real Talk: Uni to Life From Campus to Reality Unfiltered Uni Diaries Beyond the Degree
 
 The discussion focused on the challenges students face after graduation and the importance of skill development, confidence, networking, and continuous learning.
 
-### Panelists:
+ Panelists:
 * **Hafeez Ahmad**: Lecturer in the Department of Computer Science and also works as an AI Engineer at Wibbow Technologies.
 * **Ziaullah Khattak**: Co-Founder and CTO of Software Synergy Solutions and Club.
 * **Fazal Wahid**: AI Engineer based in Peshawar and currently works as an Associate AI Engineer at Tech Emulsion.
