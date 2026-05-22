@@ -362,7 +362,7 @@ export const initialGallery: GalleryItem[] = [
     id: 'gal-2',
     title: 'AGENTUM 2026 - AI Agents Session',
     category: 'Seminars',
-    imageUrl: getImagePath('Agentum blog.png'),
+    imageUrl: getImagePath('Image/Agentum Pic/0001.jpg'),
     date: '17 Feb 2026',
     description: 'Keynote presentation on AI Agents and Automation during the AGENTUM 2026 seminar.'
   },
