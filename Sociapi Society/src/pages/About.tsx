@@ -130,7 +130,7 @@ export const About: React.FC = () => {
           
           <div className="space-y-3 lg:col-span-1 text-center lg:text-left">
             <img 
-              src={importImage('Team Pic/Zuhair.jpeg')}
+             src="/Image/Zuhair.jpg"
               alt="Muhammad Zuhair Zeb" 
               className="w-28 h-28 rounded-2xl object-cover mx-auto lg:mx-0 border-2 border-[#7bd355]"
             />
