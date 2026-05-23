@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  X,
   ChevronLeft,
   ChevronRight,
   Maximize2,
@@ -34,7 +33,7 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
     'Projects'
   ];
 
-  // FILTER
+  // FILTER GALLERY
   const filteredGallery = gallery.filter((item) => {
     return activeCategory === 'All'
       ? true
@@ -57,7 +56,7 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
     setLightboxIndex(null);
   };
 
-  // PREVIOUS
+  // PREVIOUS IMAGE
   const handlePrev = () => {
     if (lightboxIndex === null) return;
 
@@ -68,7 +67,7 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
     );
   };
 
-  // NEXT
+  // NEXT IMAGE
   const handleNext = () => {
     if (lightboxIndex === null) return;
 
@@ -80,20 +79,11 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
     );
   };
 
-  // ACTIVE ITEM
+  // ACTIVE IMAGE
   const activeLightboxItem =
     lightboxIndex !== null
       ? filteredGallery[lightboxIndex]
       : null;
-
-  // OVERLAY CLICK
-  const handleOverlayClick = (
-    event: React.MouseEvent<HTMLDivElement>
-  ) => {
-    if (event.target === event.currentTarget) {
-      closeLightbox();
-    }
-  };
 
   // KEYBOARD CONTROLS
   useEffect(() => {
@@ -142,12 +132,12 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
   }, [lightboxIndex]);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-8 py-28 space-y-12 relative z-10">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 py-24 space-y-12 relative z-10">
 
       {/* HEADER */}
       <div className="space-y-4 text-center max-w-2xl mx-auto">
 
-        <span className="text-[10px] text-[#7bd355] uppercase tracking-widest font-bold font-mono">
+        <span className="text-[10px] text-[#7bd355] uppercase tracking-widest font-bold">
           Visual Terminal // Gallery
         </span>
 
@@ -188,7 +178,7 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
 
       </div>
 
-      {/* GALLERY */}
+      {/* GALLERY GRID */}
       <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
 
         {filteredGallery.map((item) => (
@@ -205,7 +195,7 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
               className="block w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             />
 
-            {/* OVERLAY */}
+            {/* HOVER OVERLAY */}
             <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all flex flex-col justify-between p-5">
 
               <div className="flex justify-between items-start">
@@ -241,131 +231,109 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
       {activeLightboxItem && (
 
         <div
-          onClick={handleOverlayClick}
-          className="fixed inset-0 z-[99999] bg-black/95 backdrop-blur-sm overflow-y-auto pointer-events-auto"
+          className="fixed inset-0 bg-black/95 backdrop-blur-sm"
+          style={{
+            zIndex: 50
+          }}
         >
 
-          {/* CLOSE BUTTON */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              closeLightbox();
+          {/* BACKDROP - CLICKABLE TO CLOSE */}
+          <div
+            onClick={closeLightbox}
+            className="absolute inset-0"
+            style={{
+              pointerEvents: 'auto'
             }}
-            className="
-              fixed
-              top-5
-              right-5
-              z-[999999]
-              flex
-              items-center
-              justify-center
-              w-12
-              h-12
-              rounded-full
-              bg-black/80
-              border
-              border-white/20
-              text-white
-              hover:text-[#7bd355]
-              transition-all
-              cursor-pointer
-              pointer-events-auto
-            "
-          >
-            <X className="w-6 h-6 pointer-events-none" />
-          </button>
+          />
 
           {/* LEFT BUTTON */}
           <button
             type="button"
             onClick={(e) => {
-              e.preventDefault();
               e.stopPropagation();
               handlePrev();
             }}
-            className="
-              fixed
-              left-3
-              md:left-6
-              top-1/2
-              -translate-y-1/2
-              z-[999999]
-              flex
-              items-center
-              justify-center
-              w-12
-              h-12
-              rounded-full
-              bg-black/80
-              border
-              border-white/20
-              text-white
-              hover:text-[#7bd355]
-              transition-all
-              cursor-pointer
-            "
+            style={{
+              position: 'fixed',
+              left: 'clamp(5px, 2vw, 10px)',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: 'clamp(44px, 10vw, 52px)',
+              height: 'clamp(44px, 10vw, 52px)',
+              borderRadius: '9999px',
+              background: 'rgba(0,0,0,0.95)',
+              border: '2px solid rgba(255,255,255,0.15)',
+              color: '#ffffff',
+              zIndex: 51,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              pointerEvents: 'auto'
+            }}
           >
-            <ChevronLeft className="w-6 h-6 pointer-events-none" />
+            <ChevronLeft size={28} />
           </button>
 
           {/* RIGHT BUTTON */}
           <button
             type="button"
             onClick={(e) => {
-              e.preventDefault();
               e.stopPropagation();
               handleNext();
             }}
-            className="
-              fixed
-              right-3
-              md:right-6
-              top-1/2
-              -translate-y-1/2
-              z-[999999]
-              flex
-              items-center
-              justify-center
-              w-12
-              h-12
-              rounded-full
-              bg-black/80
-              border
-              border-white/20
-              text-white
-              hover:text-[#7bd355]
-              transition-all
-              cursor-pointer
-            "
+            style={{
+              position: 'fixed',
+              right: 'clamp(5px, 2vw, 10px)',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              width: 'clamp(44px, 10vw, 52px)',
+              height: 'clamp(44px, 10vw, 52px)',
+              borderRadius: '9999px',
+              background: 'rgba(0,0,0,0.95)',
+              border: '2px solid rgba(255,255,255,0.15)',
+              color: '#ffffff',
+              zIndex: 51,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              pointerEvents: 'auto'
+            }}
           >
-            <ChevronRight className="w-6 h-6 pointer-events-none" />
+            <ChevronRight size={28} />
           </button>
 
           {/* CONTENT */}
-          <div className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-20">
+          <div
+            className="min-h-screen flex flex-col items-center justify-center px-4 py-20"
+            style={{
+              position: 'relative',
+              zIndex: 10,
+              pointerEvents: 'auto'
+            }}
+          >
 
-            {/* IMAGE WRAPPER */}
-            <div className="relative flex items-center justify-center w-full pointer-events-none">
-
+            {/* IMAGE */}
+            <div className="relative inline-flex rounded-[20px] overflow-hidden border border-[#333]">
               <img
                 src={activeLightboxItem.imageUrl}
                 alt={activeLightboxItem.title}
-                className="
-                  block
-                  w-auto
-                  h-auto
-                  max-w-[95vw]
-                  max-h-[75vh]
-                  object-contain
-                  rounded-2xl
-                  border
-                  border-[#333333]
-                  bg-black
-                "
+                style={{
+                  maxWidth: '95vw',
+                  maxHeight: '75vh',
+                  objectFit: 'contain',
+                  display: 'block'
+                }}
               />
-
+              <button
+                type="button"
+                onClick={closeLightbox}
+                className="absolute top-3 right-3 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white transition hover:bg-[#7bd355]/95 hover:text-black"
+                title="Close"
+              >
+                ✕
+              </button>
             </div>
 
             {/* INFO PANEL */}
@@ -397,7 +365,7 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
                 {activeLightboxItem.description}
               </p>
 
-              <div className="pt-4 text-center text-[10px] uppercase tracking-widest font-mono text-[#7bd355]">
+              <div className="pt-4 text-center text-[10px] uppercase tracking-widest text-[#7bd355]">
                 Frame {lightboxIndex! + 1} of{' '}
                 {filteredGallery.length}
               </div>
