@@ -187,31 +187,34 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
       {/* NIKE/APPLE-STYLE PRODUCT SPECIFICATION DETAIL MODAL */}
       {selectedProduct && (
         <div className="fixed inset-0 z-[99999] bg-[#000]/95 backdrop-blur-xl flex items-center justify-center p-4">
-          <div className="relative mx-auto w-full max-w-4xl bg-[#111111] border border-[#7bd355]/30 rounded-3xl flex flex-col md:flex-row shadow-2xl overflow-hidden max-h-[90vh]">
+          {/* Main Modal Container - Fixed height on mobile so it can never push off screen */}
+          <div className="relative mx-auto w-full max-w-4xl bg-[#111111] border border-[#7bd355]/30 rounded-2xl md:rounded-3xl flex flex-col md:flex-row shadow-2xl overflow-hidden h-full max-h-[85vh] md:max-h-[800px]">
             
-            {/* Left media visual panel */}
-            <div className="w-full md:w-1/2 relative h-[45vh] min-h-[260px] md:h-auto md:min-h-[420px] bg-[#111111] overflow-hidden flex items-center justify-center shrink-0">
-              <img src={selectedProduct.imageUrl} alt={selectedProduct.name} className="w-full h-full object-contain" />
-              <button
-                type="button"
-                onClick={() => setSelectedProduct(null)}
-                className="absolute top-4 right-4 z-50 p-3 rounded-full bg-[#121212]/95 border border-[#939596]/20 text-[#e8ecee] hover:text-[#7bd355] transition-all"
-              >
-                <X className="w-4 h-4" />
-              </button>
+            {/* Global X Button - Moved out of the image container to guarantee it's clickable */}
+            <button
+              type="button"
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-4 right-4 z-[99999] p-3 rounded-full bg-[#121212]/95 border border-[#939596]/20 text-[#e8ecee] hover:text-red-500 hover:border-red-500 transition-all shadow-xl"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Left media visual panel - Exactly 40% height on mobile */}
+            <div className="w-full md:w-1/2 relative h-[40%] md:h-auto md:min-h-[420px] bg-[#161616] flex items-center justify-center shrink-0">
+              <img src={selectedProduct.imageUrl} alt={selectedProduct.name} className="w-full h-full object-contain p-4" />
             </div>
 
-            {/* Right configuration panel */}
-            <div className="w-full md:w-1/2 flex flex-col bg-[#111111] flex-1 min-h-0">
+            {/* Right configuration panel - Exactly 60% height on mobile, with strict overflow-hidden */}
+            <div className="w-full md:w-1/2 flex flex-col bg-[#111111] h-[60%] md:h-auto overflow-hidden">
               
-              {/* Scrollable content area */}
-              <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6">
+              {/* Scrollable content area - flex-1 pushes the bottom action bar down */}
+              <div className="flex-1 overflow-y-auto p-5 md:p-8 space-y-6">
                 
                 <div>
                   <span className="text-[8px] uppercase tracking-widest font-bold text-[#7bd355] bg-[#517642]/20 px-2 py-0.5 rounded">
                     {selectedProduct.category} Catalog
                   </span>
-                  <h2 className="text-xl font-futuristic font-bold text-[#e8ecee] mt-2">
+                  <h2 className="text-xl font-futuristic font-bold text-[#e8ecee] mt-2 pr-10">
                     {selectedProduct.name}
                   </h2>
                   <span className="block text-2xl font-futuristic font-bold text-[#7bd355] mt-1">Rs. {selectedProduct.price}</span>
@@ -228,12 +231,12 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                 {selectedProduct.sizes && selectedProduct.sizes.length > 0 && (
                   <div className="space-y-2">
                     <h4 className="text-[10px] uppercase font-bold tracking-widest text-[#e8ecee]">Size Options</h4>
-                    <div className="flex space-x-2">
+                    <div className="flex flex-wrap gap-2">
                       {selectedProduct.sizes.map((size) => (
                         <button
                           key={size}
                           onClick={() => setConfigSize(size)}
-                          className={`w-9 h-9 rounded-lg border text-xs font-bold transition-all flex items-center justify-center ${
+                          className={`w-10 h-10 rounded-lg border text-xs font-bold transition-all flex items-center justify-center ${
                             configSize === size
                               ? 'bg-[#7bd355] border-[#7bd355] text-[#121212]'
                               : 'bg-[#121212] border-[#333333] text-[#939596] hover:border-[#7bd355]/40'
@@ -284,12 +287,13 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                     </li>
                   </ul>
                 </div>
-
-                <div className="h-4"></div>
+                
+                {/* Spacer padding at the bottom of the scroll area */}
+                <div className="h-2"></div>
               </div>
 
-              {/* Action buttons */}
-              <div className="shrink-0 p-6 md:p-8 pt-4 border-t border-[#333333] bg-[#111111] flex space-x-3">
+              {/* Action buttons - Shrink-0 ensures this ALWAYS stays locked to the bottom visible frame */}
+              <div className="shrink-0 p-5 md:p-8 pt-4 border-t border-[#333333] bg-[#111111] flex space-x-3 z-10">
                 <button
                   onClick={() => handleAddToCart(selectedProduct, configSize, configQty)}
                   className="flex-1 py-3.5 bg-[#7bd355] text-[#121212] hover:bg-[#517642] hover:text-[#e8ecee] font-bold text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center space-x-2"
@@ -298,10 +302,8 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                   <span>Enlist to Cart</span>
                 </button>
                 <button
-                  onClick={() => {
-                    toggleWishlist(selectedProduct);
-                  }}
-                  className="px-4.5 py-3.5 bg-[#333333] border border-[#939596]/10 text-[#e8ecee] hover:border-red-500 hover:text-red-500 rounded-xl transition-all"
+                  onClick={() => toggleWishlist(selectedProduct)}
+                  className="px-4.5 py-3.5 bg-[#333333] border border-[#939596]/10 text-[#e8ecee] hover:border-red-500 hover:text-red-500 rounded-xl transition-all flex items-center justify-center"
                 >
                   <Heart className="w-4 h-4" />
                 </button>
@@ -314,7 +316,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
       {/* SHOPPING CART DRAWER PANEL */}
       {isCartOpen && (
         <div className="fixed inset-0 z-[99999] flex justify-end bg-[#121212]/80 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md bg-[#1e1e1e] border-l border-[#7bd355]/30 shadow-2xl flex flex-col justify-between h-full rounded-2xl overflow-hidden">
+          <div className="w-full max-w-md bg-[#1e1e1e] border border-[#7bd355]/30 shadow-2xl flex flex-col justify-between h-full rounded-2xl overflow-hidden">
             
             {/* Drawer Header */}
             <div className="px-6 py-4.5 border-b border-[#333333] flex justify-between items-center bg-[#161616]">
@@ -324,14 +326,14 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
               </div>
               <button
                 onClick={() => setIsCartOpen(false)}
-                className="p-1 rounded hover:bg-[#333333] text-[#939596]"
+                className="p-1 rounded hover:bg-[#333333] text-[#939596] hover:text-red-500 transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Drawer Body list */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-[#111111]">
               {cart.length === 0 ? (
                 <div className="text-center py-20 space-y-2 text-[#939596] text-xs uppercase tracking-widest">
                   <p>Your shopping cart coordinates are completely vacant.</p>
@@ -344,7 +346,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                 </div>
               ) : (
                 cart.map((cartItem, idx) => (
-                  <div key={idx} className="flex items-center space-x-4 bg-[#121212] p-4 rounded-xl border border-[#333333] relative">
+                  <div key={idx} className="flex items-center space-x-4 bg-[#1e1e1e] p-4 rounded-xl border border-[#333333] relative">
                     <img src={cartItem.item.imageUrl} alt={cartItem.item.name} className="w-12 h-12 rounded object-cover border border-[#333333]" />
                     <div className="flex-1 min-w-0">
                       <h4 className="font-futuristic font-bold text-xs text-[#e8ecee] truncate">{cartItem.item.name}</h4>
@@ -355,7 +357,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                       onClick={() => {
                         setCart((prev) => prev.filter((_, i) => i !== idx));
                       }}
-                      className="p-1 rounded bg-[#333333] text-[#939596] hover:text-red-500 hover:bg-red-950/20"
+                      className="p-1.5 rounded bg-[#333333] text-[#939596] hover:text-red-500 hover:bg-red-950/20 transition-all"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -366,7 +368,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
 
             {/* Drawer Footer checkout trigger */}
             {cart.length > 0 && (
-              <div className="p-6 bg-[#161616] border-t border-[#333333] space-y-4">
+              <div className="shrink-0 p-6 bg-[#161616] border-t border-[#333333] space-y-4">
                 
                 <div className="flex justify-between items-center text-xs font-futuristic font-bold">
                   <span className="text-[#939596]">Total Price:</span>
