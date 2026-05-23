@@ -99,95 +99,97 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
   const totalPrice = cart.reduce((acc, c) => acc + (c.item.price * c.quantity), 0);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-8 py-28 space-y-12 relative z-10">
-      
-      {/* Title */}
-      <div className="space-y-4 text-center max-w-2xl mx-auto">
-        <span className="text-[10px] text-[#7bd355] uppercase tracking-widest font-bold font-mono">Apparel Catalog // store</span>
-        <h1 className="text-4xl md:text-5xl font-futuristic font-black tracking-tight text-[#e8ecee]">
-          SOCIAPI <span className="text-[#7bd355] glow-text">CYBER STORE</span>
-        </h1>
-        <p className="text-xs text-[#939596] leading-relaxed">
-          Premium, high-performance gears and visual decals. Cash on delivery & direct WhatsApp checkout supported.
-        </p>
-      </div>
+    <>
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-28 space-y-12 relative z-10">
+        
+        {/* Title */}
+        <div className="space-y-4 text-center max-w-2xl mx-auto">
+          <span className="text-[10px] text-[#7bd355] uppercase tracking-widest font-bold font-mono">Apparel Catalog // store</span>
+          <h1 className="text-4xl md:text-5xl font-futuristic font-black tracking-tight text-[#e8ecee]">
+            SOCIAPI <span className="text-[#7bd355] glow-text">CYBER STORE</span>
+          </h1>
+          <p className="text-xs text-[#939596] leading-relaxed">
+            Premium, high-performance gears and visual decals. Cash on delivery & direct WhatsApp checkout supported.
+          </p>
+        </div>
 
-      {/* Category Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 border-b border-[#333333] pb-6">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all ${
-              activeCategory === cat
-                ? 'bg-[#7bd355] text-[#121212] font-bold shadow-[0_0_15px_rgba(123,211,85,0.25)]'
-                : 'text-[#939596] hover:text-[#e8ecee] hover:bg-[#333333]/30'
-            }`}
-          >
-            {cat} Catalog
-          </button>
-        ))}
-      </div>
-
-      {/* Product Catalog Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {filteredProducts.map((product) => {
-          const isWishlisted = wishlist.some((x) => x.id === product.id);
-          return (
-            <div
-              key={product.id}
-              className="glass-panel rounded-2xl border border-[#333333] overflow-hidden hover:border-[#7bd355]/40 transition-all flex flex-col justify-between group cursor-pointer"
-              onClick={() => handleOpenProduct(product)}
+        {/* Category Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 border-b border-[#333333] pb-6">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all ${
+                activeCategory === cat
+                  ? 'bg-[#7bd355] text-[#121212] font-bold shadow-[0_0_15px_rgba(123,211,85,0.25)]'
+                  : 'text-[#939596] hover:text-[#e8ecee] hover:bg-[#333333]/30'
+              }`}
             >
-              <div>
-                <div className="relative h-64 bg-[#161616] overflow-hidden">
-                  <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" />
-                  
-                  {/* Wishlist toggle */}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleWishlist(product);
-                    }}
-                    className={`absolute top-4 right-4 p-2 rounded-full border transition-all ${
-                      isWishlisted
-                        ? 'bg-red-500/10 border-red-500 text-red-500'
-                        : 'bg-[#121212]/80 border-[#333333] text-[#939596] hover:text-red-500'
-                    }`}
-                  >
-                    <Heart className={`w-4.5 h-4.5 ${isWishlisted ? 'fill-current' : ''}`} />
-                  </button>
-                  
-                  <span className="absolute bottom-4 left-4 text-[8px] font-bold uppercase tracking-widest bg-[#121212]/90 border border-[#7bd355]/30 text-[#7bd355] px-2.5 py-0.5 rounded">
-                    {product.category}
+              {cat} Catalog
+            </button>
+          ))}
+        </div>
+
+        {/* Product Catalog Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {filteredProducts.map((product) => {
+            const isWishlisted = wishlist.some((x) => x.id === product.id);
+            return (
+              <div
+                key={product.id}
+                className="glass-panel rounded-2xl border border-[#333333] overflow-hidden hover:border-[#7bd355]/40 transition-all flex flex-col justify-between group cursor-pointer"
+                onClick={() => handleOpenProduct(product)}
+              >
+                <div>
+                  <div className="relative h-64 bg-[#161616] overflow-hidden">
+                    <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" />
+                    
+                    {/* Wishlist toggle */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleWishlist(product);
+                      }}
+                      className={`absolute top-4 right-4 p-2 rounded-full border transition-all ${
+                        isWishlisted
+                          ? 'bg-red-500/10 border-red-500 text-red-500'
+                          : 'bg-[#121212]/80 border-[#333333] text-[#939596] hover:text-red-500'
+                      }`}
+                    >
+                      <Heart className={`w-4.5 h-4.5 ${isWishlisted ? 'fill-current' : ''}`} />
+                    </button>
+                    
+                    <span className="absolute bottom-4 left-4 text-[8px] font-bold uppercase tracking-widest bg-[#121212]/90 border border-[#7bd355]/30 text-[#7bd355] px-2.5 py-0.5 rounded">
+                      {product.category}
+                    </span>
+                  </div>
+                  <div className="p-5 space-y-2">
+                    <h3 className="font-futuristic font-bold text-xs text-[#e8ecee] line-clamp-1 group-hover:text-[#7bd355] transition-colors">
+                      {product.name}
+                    </h3>
+                    <p className="text-[11px] text-[#939596] line-clamp-2 leading-relaxed">
+                      {product.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="p-5 pt-0 flex items-center justify-between border-t border-[#333333] mt-3">
+                  <span className="font-futuristic font-bold text-sm text-[#7bd355]">Rs. {product.price}</span>
+                  <span className="text-[9px] uppercase tracking-widest font-bold text-[#939596] flex items-center group-hover:text-[#7bd355] transition-colors">
+                    <ShoppingBag className="w-3.5 h-3.5 mr-1" /> Configure
                   </span>
                 </div>
-                <div className="p-5 space-y-2">
-                  <h3 className="font-futuristic font-bold text-xs text-[#e8ecee] line-clamp-1 group-hover:text-[#7bd355] transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-[11px] text-[#939596] line-clamp-2 leading-relaxed">
-                    {product.description}
-                  </p>
-                </div>
               </div>
-              <div className="p-5 pt-0 flex items-center justify-between border-t border-[#333333] mt-3">
-                <span className="font-futuristic font-bold text-sm text-[#7bd355]">Rs. {product.price}</span>
-                <span className="text-[9px] uppercase tracking-widest font-bold text-[#939596] flex items-center group-hover:text-[#7bd355] transition-colors">
-                  <ShoppingBag className="w-3.5 h-3.5 mr-1" /> Configure
-                </span>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* NIKE/APPLE-STYLE PRODUCT SPECIFICATION DETAIL MODAL */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-[9999] bg-[#000]/95 backdrop-blur-xl flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[99999] bg-[#000]/95 backdrop-blur-xl flex items-center justify-center p-4">
           <div className="relative mx-auto w-full max-w-4xl bg-[#111111] border border-[#7bd355]/30 rounded-3xl flex flex-col md:flex-row shadow-2xl overflow-hidden max-h-[90vh]">
             
-            {/* 1. FIXED Left media visual panel (added h-[45vh] to limit mobile height) */}
+            {/* Left media visual panel */}
             <div className="w-full md:w-1/2 relative h-[45vh] min-h-[260px] md:h-auto md:min-h-[420px] bg-[#111111] overflow-hidden flex items-center justify-center shrink-0">
               <img src={selectedProduct.imageUrl} alt={selectedProduct.name} className="w-full h-full object-contain" />
               <button
@@ -199,7 +201,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
               </button>
             </div>
 
-            {/* 2. FIXED Right configuration panel (added flex-1 min-h-0 so the inside overflow works) */}
+            {/* Right configuration panel */}
             <div className="w-full md:w-1/2 flex flex-col bg-[#111111] flex-1 min-h-0">
               
               {/* Scrollable content area */}
@@ -283,11 +285,10 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                   </ul>
                 </div>
 
-                {/* Extra padding bottom for better scroll */}
                 <div className="h-4"></div>
               </div>
 
-              {/* Action buttons - FIXED AT BOTTOM, NO SCROLL */}
+              {/* Action buttons */}
               <div className="shrink-0 p-6 md:p-8 pt-4 border-t border-[#333333] bg-[#111111] flex space-x-3">
                 <button
                   onClick={() => handleAddToCart(selectedProduct, configSize, configQty)}
@@ -312,7 +313,7 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
 
       {/* SHOPPING CART DRAWER PANEL */}
       {isCartOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end bg-[#121212]/80 backdrop-blur-sm p-4">
+        <div className="fixed inset-0 z-[99999] flex justify-end bg-[#121212]/80 backdrop-blur-sm p-4">
           <div className="w-full max-w-md bg-[#1e1e1e] border-l border-[#7bd355]/30 shadow-2xl flex flex-col justify-between h-full rounded-2xl overflow-hidden">
             
             {/* Drawer Header */}
@@ -455,6 +456,6 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
