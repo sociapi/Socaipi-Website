@@ -246,6 +246,42 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
             }}
           />
 
+          {/* CLOSE BUTTON - RESPONSIVE & ALWAYS CLICKABLE */}
+          <button
+            type="button"
+            onClick={closeLightbox}
+            style={{
+              position: 'fixed',
+              top: 'clamp(10px, 3vw, 20px)',
+              right: 'clamp(10px, 3vw, 20px)',
+              width: 'clamp(44px, 12vw, 58px)',
+              height: 'clamp(44px, 12vw, 58px)',
+              borderRadius: '9999px',
+              background: 'rgba(0,0,0,0.95)',
+              border: '2px solid rgba(255,255,255,0.2)',
+              color: '#ffffff',
+              zIndex: 51,
+              fontSize: 'clamp(20px, 5vw, 34px)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              pointerEvents: 'auto',
+              transition: 'all 0.2s ease',
+              backdropFilter: 'blur(4px)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(123, 211, 85, 0.15)';
+              e.currentTarget.style.border = '2px solid #7bd355';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(0,0,0,0.95)';
+              e.currentTarget.style.border = '2px solid rgba(255,255,255,0.2)';
+            }}
+          >
+            ✕
+          </button>
+
           {/* LEFT BUTTON */}
           <button
             type="button"
@@ -315,26 +351,18 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
           >
 
             {/* IMAGE */}
-            <div className="relative inline-flex rounded-[20px] overflow-hidden border border-[#333]">
-              <img
-                src={activeLightboxItem.imageUrl}
-                alt={activeLightboxItem.title}
-                style={{
-                  maxWidth: '95vw',
-                  maxHeight: '75vh',
-                  objectFit: 'contain',
-                  display: 'block'
-                }}
-              />
-              <button
-                type="button"
-                onClick={closeLightbox}
-                className="absolute top-3 right-3 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/70 text-white transition hover:bg-[#7bd355]/95 hover:text-black"
-                title="Close"
-              >
-                ✕
-              </button>
-            </div>
+            <img
+              src={activeLightboxItem.imageUrl}
+              alt={activeLightboxItem.title}
+              style={{
+                maxWidth: '95vw',
+                maxHeight: '75vh',
+                objectFit: 'contain',
+                borderRadius: '20px',
+                pointerEvents: 'none',
+                border: '1px solid #333'
+              }}
+            />
 
             {/* INFO PANEL */}
             <div className="w-full max-w-3xl mt-6 bg-[#1b1b1b] border border-[#333333] rounded-2xl p-5">
