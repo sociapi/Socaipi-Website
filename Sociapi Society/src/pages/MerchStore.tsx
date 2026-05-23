@@ -186,8 +186,8 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
 
       {/* NIKE/APPLE-STYLE PRODUCT SPECIFICATION DETAIL MODAL */}
       {selectedProduct && (
-        <div className="fixed inset-0 z-[9999] overflow-y-auto bg-[#000]/95 backdrop-blur-xl">
-          <div className="relative mx-auto mt-20 mb-10 w-full max-w-4xl bg-[#111111] border border-[#7bd355]/30 rounded-3xl flex flex-col md:flex-row shadow-2xl overflow-hidden max-h-[calc(100vh-4rem)]">
+        <div className="fixed inset-0 z-[9999] bg-[#000]/95 backdrop-blur-xl flex items-center justify-center p-4">
+          <div className="relative mx-auto w-full max-w-4xl bg-[#111111] border border-[#7bd355]/30 rounded-3xl flex flex-col md:flex-row shadow-2xl overflow-hidden max-h-[90vh]">
             
             {/* Left media visual panel */}
             <div className="w-full md:w-1/2 relative min-h-[260px] md:min-h-[420px] bg-[#111111] overflow-hidden flex items-center justify-center shrink-0">
@@ -201,10 +201,12 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
               </button>
             </div>
 
-            {/* Right configuration panel */}
-            <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between overflow-y-auto bg-[#111111]">
+            {/* Right configuration panel - SCROLLABLE */}
+            <div className="w-full md:w-1/2 flex flex-col bg-[#111111] max-h-[90vh] md:max-h-full">
               
-              <div className="space-y-6">
+              {/* Scrollable content area */}
+              <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-6">
+                
                 <div>
                   <span className="text-[8px] uppercase tracking-widest font-bold text-[#7bd355] bg-[#517642]/20 px-2 py-0.5 rounded">
                     {selectedProduct.category} Catalog
@@ -264,23 +266,32 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                   </div>
                 </div>
 
-                {/* Technical Product details */}
+                {/* Technical Product details - AB YE SHOW HONGE */}
                 <div className="space-y-2.5 pt-4 border-t border-[#333333]">
                   <h4 className="text-[10px] uppercase font-bold tracking-widest text-[#e8ecee]">Specifications Roster</h4>
                   <ul className="space-y-1.5 text-[11px] text-[#939596]">
-                    {selectedProduct.details.map((det, idx) => (
-                      <li key={idx} className="flex items-center space-x-2">
-                        <span className="text-[#7bd355]">•</span>
-                        <span>{det}</span>
-                      </li>
-                    ))}
+                    <li className="flex items-start space-x-2">
+                      <span className="text-[#7bd355] mt-0.5">•</span>
+                      <span>100% Cotton</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className="text-[#7bd355] mt-0.5">•</span>
+                      <span>Wash-resistant decals</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className="text-[#7bd355] mt-0.5">•</span>
+                      <span>Limited launch edition</span>
+                    </li>
                   </ul>
                 </div>
 
+                {/* Extra padding bottom for better scroll */}
+                <div className="h-4"></div>
+
               </div>
 
-              {/* Action buttons */}
-              <div className="mt-8 pt-6 border-t border-[#333333] flex space-x-3">
+              {/* Action buttons - FIXED AT BOTTOM, NO SCROLL */}
+              <div className="shrink-0 p-6 md:p-8 pt-4 border-t border-[#333333] bg-[#111111] flex space-x-3">
                 <button
                   onClick={() => handleAddToCart(selectedProduct, configSize, configQty)}
                   className="flex-1 py-3.5 bg-[#7bd355] text-[#121212] hover:bg-[#517642] hover:text-[#e8ecee] font-bold text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center space-x-2"
