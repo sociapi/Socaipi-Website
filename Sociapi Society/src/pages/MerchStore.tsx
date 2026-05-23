@@ -187,10 +187,10 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
       {/* NIKE/APPLE-STYLE PRODUCT SPECIFICATION DETAIL MODAL */}
       {selectedProduct && (
         <div className="fixed inset-0 z-[99999] bg-[#000]/95 backdrop-blur-xl flex items-center justify-center p-4">
-          {/* Main Modal Container - Fixed height on mobile so it can never push off screen */}
-          <div className="relative mx-auto w-full max-w-4xl bg-[#111111] border border-[#7bd355]/30 rounded-2xl md:rounded-3xl flex flex-col md:flex-row shadow-2xl overflow-hidden h-full max-h-[85vh] md:max-h-[800px]">
+          {/* Main Modal Container - Force absolute height boundaries */}
+          <div className="relative mx-auto w-full max-w-4xl bg-[#111111] border border-[#7bd355]/30 rounded-2xl md:rounded-3xl flex flex-col md:flex-row shadow-2xl overflow-hidden h-[85vh] max-h-[800px]">
             
-            {/* Global X Button - Moved out of the image container to guarantee it's clickable */}
+            {/* Global X Button */}
             <button
               type="button"
               onClick={() => setSelectedProduct(null)}
@@ -199,16 +199,16 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
               <X className="w-4 h-4" />
             </button>
 
-            {/* Left media visual panel - Exactly 40% height on mobile */}
-            <div className="w-full md:w-1/2 relative h-[40%] md:h-auto md:min-h-[420px] bg-[#161616] flex items-center justify-center shrink-0">
+            {/* Left media visual panel - Fixed at 40% height on mobile */}
+            <div className="w-full md:w-1/2 relative h-[40%] md:h-full bg-[#161616] flex items-center justify-center shrink-0">
               <img src={selectedProduct.imageUrl} alt={selectedProduct.name} className="w-full h-full object-contain p-4" />
             </div>
 
-            {/* Right configuration panel - Exactly 60% height on mobile, with strict overflow-hidden */}
-            <div className="w-full md:w-1/2 flex flex-col bg-[#111111] h-[60%] md:h-auto overflow-hidden">
+            {/* Right configuration panel - Fixed at 60% height on mobile, relative for bottom action bar */}
+            <div className="w-full md:w-1/2 relative flex flex-col bg-[#111111] h-[60%] md:h-full">
               
-              {/* Scrollable content area - flex-1 pushes the bottom action bar down */}
-              <div className="flex-1 overflow-y-auto p-5 md:p-8 space-y-6">
+              {/* Scrollable content area - Absolute positioning from top to bottom footer to prevent overlap */}
+              <div className="absolute inset-0 bottom-[88px] overflow-y-auto p-5 md:p-8 space-y-6 pb-8">
                 
                 <div>
                   <span className="text-[8px] uppercase tracking-widest font-bold text-[#7bd355] bg-[#517642]/20 px-2 py-0.5 rounded">
@@ -287,13 +287,10 @@ export const MerchStore: React.FC<MerchStoreProps> = ({
                     </li>
                   </ul>
                 </div>
-                
-                {/* Spacer padding at the bottom of the scroll area */}
-                <div className="h-2"></div>
               </div>
 
-              {/* Action buttons - Shrink-0 ensures this ALWAYS stays locked to the bottom visible frame */}
-              <div className="shrink-0 p-5 md:p-8 pt-4 border-t border-[#333333] bg-[#111111] flex space-x-3 z-10">
+              {/* Action buttons - ABSOLUTELY pinned to the bottom */}
+              <div className="absolute bottom-0 left-0 right-0 h-[88px] p-5 md:p-8 pt-4 border-t border-[#333333] bg-[#111111] flex space-x-3 z-10">
                 <button
                   onClick={() => handleAddToCart(selectedProduct, configSize, configQty)}
                   className="flex-1 py-3.5 bg-[#7bd355] text-[#121212] hover:bg-[#517642] hover:text-[#e8ecee] font-bold text-xs uppercase tracking-widest rounded-xl transition-all flex items-center justify-center space-x-2"
