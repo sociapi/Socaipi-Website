@@ -5,7 +5,7 @@ import {
   Maximize2,
   Calendar,
   Folder,
-  X // Added X icon
+  X 
 } from 'lucide-react';
 
 import { GalleryItem } from '../data/initialData';
@@ -60,13 +60,11 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
 
   useEffect(() => {
     if (lightboxIndex === null) return;
-
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeLightbox();
       if (event.key === 'ArrowLeft') handlePrev();
       if (event.key === 'ArrowRight') handleNext();
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxIndex]);
@@ -149,24 +147,20 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
       {/* LIGHTBOX */}
       {activeLightboxItem && (
         <div className="fixed inset-0" style={{ zIndex: 50 }}>
-          {/* 1. BLUR LAYER (Visual only, no interaction) */}
           <div className="absolute inset-0 bg-black/95 backdrop-blur-sm" style={{ zIndex: 0 }} />
-
-          {/* 2. BACKDROP CLICK LAYER */}
           <div
             onClick={closeLightbox}
             className="absolute inset-0"
             style={{ zIndex: 1, pointerEvents: 'auto' }}
           />
 
-          {/* 3. CONTENT LAYER */}
           <div
             className="min-h-screen flex flex-col items-center justify-center px-4 py-20"
             style={{
               position: 'relative',
               zIndex: 2,
               pointerEvents: 'auto',
-              overflowY: 'auto' // Allow scrolling if content is long
+              overflowY: 'auto'
             }}
           >
             <img
@@ -181,7 +175,6 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
                 border: '1px solid #333'
               }}
             />
-
             <div className="w-full max-w-3xl mt-6 bg-[#1b1b1b] border border-[#333333] rounded-2xl p-5">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b border-[#333333] pb-3">
                 <h3 className="text-lg font-bold text-white">{activeLightboxItem.title}</h3>
@@ -205,7 +198,7 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
             </div>
           </div>
 
-          {/* 4. UI BUTTONS LAYER (Highest z-index) */}
+          {/* CLOSE BUTTON - MOVED TO LEFT AND LOWERED TO AVOID NAV */}
           <button
             type="button"
             onClick={(e) => {
@@ -214,8 +207,8 @@ export const Gallery: React.FC<GalleryProps> = ({ gallery }) => {
             }}
             style={{
               position: 'absolute',
-              top: 'clamp(15px, 4vw, 30px)',
-              right: 'clamp(15px, 4vw, 30px)',
+              top: 'clamp(80px, 12vw, 110px)', // Increased top to push it below the nav bar
+              left: 'clamp(15px, 4vw, 30px)',  // Changed right to left
               width: 'clamp(48px, 12vw, 60px)',
               height: 'clamp(48px, 12vw, 60px)',
               borderRadius: '9999px',
