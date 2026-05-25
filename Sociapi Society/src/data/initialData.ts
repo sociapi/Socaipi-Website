@@ -343,7 +343,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Muhammad Abdullah ',
     role: 'Graphic Designers CO-Lead ',
     department: 'Design & Media',
-    avatar: getImagePath('Team Pic/Muhammad Abdullah .png'),
+    avatar: getImagePath('Team Pic/Muhammad Abdullah.jpg'),
     bio: 'Leads the design of all digital and print media, including event posters, social media graphics, and merchandise designs.',
     skills: ['Graphic Design', 'Adobe Creative Suite', 'Branding', 'Visual Storytelling'],
     socials: {},
