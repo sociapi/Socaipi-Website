@@ -228,7 +228,7 @@ export const initialTeam: TeamMember[] = [
     name: 'Atika  Aqleem ',
     role: 'Organizer Lead',
     department: 'Operations',
-    avatar: getImagePath('Team Pic/Atika Aqleem.jpg'),
+    avatar: getImagePath('Team Pic/Atika Aqlim.jpg'),
     bio: 'Leads the organization of workshops, bootcamps, and seminars, ensuring smooth execution and participant engagement.',
     skills: ['Event Logistics', 'Vendor Coordination', 'Timeline Management', 'Crisis Resolution'],
     socials: {},
